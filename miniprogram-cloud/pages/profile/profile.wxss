@@ -8,8 +8,8 @@
     width: 88rpx;
     height: 88rpx;
     border-radius: 50%;
-    background: #e8f2fd;
-    color: #1d6fd1;
+    background: #EEEAFF;
+    color: #7C5CFC;
     font-size: 36rpx;
     font-weight: 700;
     display: flex;
@@ -22,28 +22,28 @@
 .account-name {
     font-size: 32rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .account-info {
     display: flex;
     flex-wrap: wrap;
     padding: 16rpx 0;
-    border-top: 1rpx solid #f0f3f8;
-    border-bottom: 1rpx solid #f0f3f8;
+    border-top: 1rpx solid #EFEAF8;
+    border-bottom: 1rpx solid #EFEAF8;
 }
 
 .account-info-label {
     width: 30%;
     font-size: 24rpx;
-    color: #9aa7ba;
+    color: #A9A4C4;
     padding: 6rpx 0;
 }
 
 .account-info-value {
     width: 70%;
     font-size: 24rpx;
-    color: #1f2d3d;
+    color: #332C55;
     font-weight: 600;
     padding: 6rpx 0;
 }
@@ -54,7 +54,7 @@
     border-radius: 16rpx;
     padding: 28rpx 0;
     margin-bottom: 24rpx;
-    box-shadow: 0 2rpx 8rpx rgba(16, 42, 84, 0.05);
+    box-shadow: 0 2rpx 8rpx rgba(76, 55, 168, 0.08);
 }
 
 .profile-stat {
@@ -67,19 +67,19 @@
 .profile-stat-value {
     font-size: 40rpx;
     font-weight: 700;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .profile-stat-label {
     font-size: 22rpx;
-    color: #7a869a;
+    color: #8B86A8;
     margin-top: 4rpx;
 }
 
 .section-title {
     font-size: 30rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
     display: block;
     margin-bottom: 8rpx;
 }
@@ -88,7 +88,7 @@
     display: flex;
     align-items: center;
     padding: 24rpx 0;
-    border-top: 1rpx solid #f0f3f8;
+    border-top: 1rpx solid #EFEAF8;
 }
 
 .profile-link-body {
@@ -100,19 +100,19 @@
     display: block;
     font-size: 28rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .profile-link-desc {
     display: block;
     font-size: 22rpx;
-    color: #9aa7ba;
+    color: #A9A4C4;
     margin-top: 2rpx;
 }
 
 .profile-link-count {
     font-size: 22rpx;
-    color: #7a869a;
+    color: #8B86A8;
     margin-right: 12rpx;
     flex-shrink: 0;
 }

@@ -1,7 +1,7 @@
 page {
     min-height: 100%;
-    background: #f5f7fa;
-    color: #1f2d3d;
+    background: #F5F3FB;
+    color: #332C55;
     font-size: 28rpx;
     line-height: 1.6;
     font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -14,23 +14,23 @@ page {
 
 .panel {
     background: #ffffff;
-    border-radius: 16rpx;
+    border-radius: 20rpx;
     padding: 28rpx;
     margin-bottom: 24rpx;
-    box-shadow: 0 2rpx 8rpx rgba(16, 42, 84, 0.05);
+    box-shadow: 0 4rpx 16rpx rgba(76, 55, 168, 0.08);
 }
 
 .heading-title {
     display: block;
     font-size: 40rpx;
     font-weight: 700;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .heading-sub {
     display: block;
     font-size: 24rpx;
-    color: #7a869a;
+    color: #8B86A8;
     margin-top: 6rpx;
     margin-bottom: 24rpx;
 }
@@ -40,14 +40,14 @@ page {
     padding: 4rpx 16rpx;
     border-radius: 999rpx;
     font-size: 22rpx;
-    background: #eef2f7;
-    color: #5b6b7f;
+    background: #F0EDF8;
+    color: #6E6A8F;
     margin: 0 10rpx 8rpx 0;
 }
 
 .pill-blue {
-    background: #e8f2fd;
-    color: #1d6fd1;
+    background: #EEEAFF;
+    color: #7C5CFC;
 }
 
 .btn {
@@ -57,8 +57,8 @@ page {
     padding: 18rpx 36rpx;
     border-radius: 999rpx;
     font-size: 28rpx;
-    background: #eef2f7;
-    color: #1f2d3d;
+    background: #F0EDF8;
+    color: #332C55;
     border: none;
     line-height: 1.4;
 }
@@ -68,8 +68,10 @@ page {
 }
 
 .btn-primary {
-    background: #1d6fd1;
+    background: linear-gradient(135deg, #9B7BFF 0%, #7C5CFC 100%);
     color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 8rpx 20rpx rgba(124, 92, 252, 0.32);
 }
 
 .btn-block {
@@ -83,7 +85,7 @@ page {
 }
 
 .muted {
-    color: #7a869a;
+    color: #8B86A8;
     font-size: 24rpx;
 }
 
@@ -98,8 +100,8 @@ page {
 .spinner {
     width: 48rpx;
     height: 48rpx;
-    border: 4rpx solid #d7e3f5;
-    border-top-color: #1d6fd1;
+    border: 4rpx solid #DED7FA;
+    border-top-color: #7C5CFC;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     margin-bottom: 24rpx;
@@ -114,13 +116,13 @@ page {
 .state-title {
     font-size: 32rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
     margin-bottom: 12rpx;
 }
 
 .state-text {
     font-size: 26rpx;
-    color: #7a869a;
+    color: #8B86A8;
     margin-bottom: 32rpx;
 }
 
@@ -128,15 +130,15 @@ page {
     display: flex;
     align-items: flex-start;
     background: #ffffff;
-    border-radius: 16rpx;
+    border-radius: 20rpx;
     padding: 24rpx;
     margin-bottom: 16rpx;
-    box-shadow: 0 2rpx 8rpx rgba(16, 42, 84, 0.05);
+    box-shadow: 0 4rpx 16rpx rgba(76, 55, 168, 0.08);
 }
 
 .item-number {
     font-size: 24rpx;
-    color: #9aa7ba;
+    color: #A9A4C4;
     font-weight: 600;
     margin-right: 20rpx;
     padding-top: 6rpx;
@@ -152,13 +154,13 @@ page {
     display: block;
     font-size: 28rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .item-foot {
     display: block;
     font-size: 24rpx;
-    color: #7a869a;
+    color: #8B86A8;
     margin-top: 10rpx;
 }
 
@@ -174,6 +176,6 @@ page {
 
 .footer-note {
     font-size: 22rpx;
-    color: #9aa7ba;
+    color: #A9A4C4;
     margin-top: 20rpx;
 }

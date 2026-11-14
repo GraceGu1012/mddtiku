@@ -19,12 +19,12 @@
 .section-title {
     font-size: 30rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .meter {
     height: 12rpx;
-    background: #eef2f7;
+    background: #F0EDF8;
     border-radius: 999rpx;
     overflow: hidden;
     margin-bottom: 20rpx;
@@ -32,7 +32,7 @@
 
 .meter-fill {
     height: 100%;
-    background: #1d6fd1;
+    background: linear-gradient(90deg, #9B7BFF, #7C5CFC);
     border-radius: 999rpx;
 }
 
@@ -45,8 +45,8 @@
     width: 56rpx;
     height: 56rpx;
     border-radius: 12rpx;
-    background: #eef2f7;
-    color: #5b6b7f;
+    background: #F0EDF8;
+    color: #6E6A8F;
     font-size: 24rpx;
     display: flex;
     align-items: center;
@@ -65,13 +65,13 @@
 }
 
 .map-unavailable {
-    background: #f0f3f8;
-    color: #9aa7ba;
+    background: #EFEAF8;
+    color: #A9A4C4;
     text-decoration: line-through;
 }
 
 .map-current {
-    border: 3rpx solid #1d6fd1;
+    border: 3rpx solid #7C5CFC;
     box-sizing: border-box;
 }
 
@@ -90,7 +90,7 @@
     display: block;
     font-size: 32rpx;
     font-weight: 700;
-    color: #14213d;
+    color: #2B2350;
     margin: 12rpx 0 8rpx;
     line-height: 1.5;
 }
@@ -102,8 +102,8 @@
 .option {
     display: flex;
     align-items: flex-start;
-    background: #f7f9fc;
-    border: 2rpx solid #e3e9f2;
+    background: #F8F6FD;
+    border: 2rpx solid #E5DFF5;
     border-radius: 14rpx;
     padding: 22rpx 24rpx;
     margin-bottom: 16rpx;
@@ -113,8 +113,8 @@
     width: 44rpx;
     height: 44rpx;
     border-radius: 50%;
-    background: #eef2f7;
-    color: #5b6b7f;
+    background: #F0EDF8;
+    color: #6E6A8F;
     font-size: 24rpx;
     font-weight: 700;
     display: flex;
@@ -127,16 +127,16 @@
 .option-text {
     flex: 1;
     font-size: 28rpx;
-    color: #1f2d3d;
+    color: #332C55;
 }
 
 .option-selected {
-    border-color: #1d6fd1;
-    background: #eaf3fd;
+    border-color: #7C5CFC;
+    background: #F0EDFF;
 }
 
 .option-selected .option-letter {
-    background: #1d6fd1;
+    background: #7C5CFC;
     color: #ffffff;
 }
 
@@ -175,13 +175,13 @@
     display: block;
     font-size: 28rpx;
     font-weight: 700;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .answer-result-text {
     display: block;
     font-size: 26rpx;
-    color: #1f2d3d;
+    color: #332C55;
     margin-top: 6rpx;
 }
 
@@ -194,7 +194,7 @@
 
 .explanation {
     margin-top: 32rpx;
-    border-top: 1rpx solid #f0f3f8;
+    border-top: 1rpx solid #EFEAF8;
     padding-top: 24rpx;
 }
 
@@ -202,13 +202,13 @@
     display: block;
     font-size: 28rpx;
     font-weight: 700;
-    color: #14213d;
+    color: #2B2350;
     margin: 20rpx 0 12rpx;
 }
 
 .exp-quote {
-    background: #f7f9fc;
-    border-left: 6rpx solid #bad3ef;
+    background: #F8F6FD;
+    border-left: 6rpx solid #C9BCF7;
     border-radius: 8rpx;
     padding: 18rpx 20rpx;
     margin-bottom: 16rpx;
@@ -217,20 +217,20 @@
 .exp-link {
     display: block;
     font-size: 24rpx;
-    color: #1d6fd1;
+    color: #7C5CFC;
     margin-bottom: 8rpx;
 }
 
 .exp-quote-text {
     display: block;
     font-size: 26rpx;
-    color: #3d4a5c;
+    color: #4A4470;
 }
 
 .exp-text {
     display: block;
     font-size: 26rpx;
-    color: #3d4a5c;
+    color: #4A4470;
     margin-bottom: 8rpx;
 }
 

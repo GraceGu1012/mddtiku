@@ -1,48 +1,48 @@
 {
-  "pages": [
-    "pages/home/home",
-    "pages/wrong/wrong",
-    "pages/cards/cards",
-    "pages/profile/profile",
-    "pages/practice/practice",
-    "pages/exercise/exercise",
-    "pages/finish/finish",
-    "pages/card-detail/card-detail",
-    "pages/records/records",
-    "pages/source/source"
-  ],
-  "window": {
-    "navigationBarTitleText": "墨督督学习空间",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#f5f7fa",
-    "backgroundTextStyle": "light"
-  },
-  "tabBar": {
-    "color": "#7a869a",
-    "selectedColor": "#1d6fd1",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/home/home",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/wrong/wrong",
-        "text": "错题本"
-      },
-      {
-        "pagePath": "pages/cards/cards",
-        "text": "知识卡"
-      },
-      {
-        "pagePath": "pages/profile/profile",
-        "text": "我的"
-      }
-    ]
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+    "pages": [
+        "pages/home/home",
+        "pages/wrong/wrong",
+        "pages/cards/cards",
+        "pages/profile/profile",
+        "pages/practice/practice",
+        "pages/exercise/exercise",
+        "pages/finish/finish",
+        "pages/card-detail/card-detail",
+        "pages/records/records",
+        "pages/source/source"
+    ],
+    "window": {
+        "navigationBarTitleText": "墨督督学习空间",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#f5f7fa",
+        "backgroundTextStyle": "light"
+    },
+    "tabBar": {
+        "color": "#A9A4C4",
+        "selectedColor": "#7C5CFC",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/wrong/wrong",
+                "text": "错题本"
+            },
+            {
+                "pagePath": "pages/cards/cards",
+                "text": "知识卡"
+            },
+            {
+                "pagePath": "pages/profile/profile",
+                "text": "我的"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
 }

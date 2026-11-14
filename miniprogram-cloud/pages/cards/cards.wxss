@@ -1,5 +1,5 @@
 .search-input {
-    background: #f0f3f8;
+    background: #EFEAF8;
     border-radius: 12rpx;
     padding: 16rpx 24rpx;
     font-size: 26rpx;
@@ -15,7 +15,7 @@
 
 .picker-value {
     font-size: 26rpx;
-    color: #1d6fd1;
+    color: #7C5CFC;
 }
 
 .card-action {
@@ -28,14 +28,14 @@
 
 .card-action-btn {
     font-size: 24rpx;
-    color: #1d6fd1;
-    border: 1rpx solid #bad3ef;
+    color: #7C5CFC;
+    border: 1rpx solid #C9BCF7;
     border-radius: 999rpx;
     padding: 8rpx 20rpx;
 }
 
 .card-action-rating {
     font-size: 20rpx;
-    color: #9aa7ba;
+    color: #A9A4C4;
     margin-top: 8rpx;
 }

@@ -1,13 +1,16 @@
 .hero {
-    background: linear-gradient(135deg, #eaf3fd 0%, #ffffff 70%);
+    background: linear-gradient(160deg, #F1ECFF 0%, #FBFAFF 55%, #ffffff 100%);
+    border-radius: 24rpx;
+    padding: 36rpx 32rpx;
+    margin-bottom: 24rpx;
 }
 
 .hero-eyebrow {
     display: block;
     font-size: 20rpx;
     letter-spacing: 4rpx;
-    color: #1d6fd1;
-    font-weight: 600;
+    color: #7C5CFC;
+    font-weight: 700;
     margin-bottom: 16rpx;
 }
 
@@ -15,7 +18,7 @@
     display: block;
     font-size: 42rpx;
     font-weight: 700;
-    color: #14213d;
+    color: #2B2350;
     line-height: 1.35;
     margin-bottom: 16rpx;
 }
@@ -23,7 +26,7 @@
 .hero-desc {
     display: block;
     font-size: 26rpx;
-    color: #5b6b7f;
+    color: #6E6A8F;
     margin-bottom: 28rpx;
 }
 
@@ -41,29 +44,29 @@
     width: calc(50% - 16rpx);
     box-sizing: border-box;
     background: #ffffff;
-    border-radius: 16rpx;
+    border-radius: 20rpx;
     padding: 24rpx;
     margin: 0 8rpx 16rpx;
-    box-shadow: 0 2rpx 8rpx rgba(16, 42, 84, 0.05);
+    box-shadow: 0 4rpx 16rpx rgba(76, 55, 168, 0.08);
     display: flex;
     flex-direction: column;
 }
 
 .stat-label {
     font-size: 22rpx;
-    color: #7a869a;
+    color: #8B86A8;
 }
 
 .stat-value {
     font-size: 48rpx;
     font-weight: 700;
-    color: #14213d;
+    color: #2B2350;
     margin: 6rpx 0;
 }
 
 .stat-hint {
     font-size: 20rpx;
-    color: #9aa7ba;
+    color: #A9A4C4;
 }
 
 .section-head {
@@ -76,7 +79,7 @@
 .section-title {
     font-size: 30rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
     display: block;
     margin-bottom: 16rpx;
 }
@@ -89,7 +92,7 @@
     display: flex;
     align-items: center;
     padding: 24rpx 0;
-    border-top: 1rpx solid #f0f3f8;
+    border-top: 1rpx solid #EFEAF8;
 }
 
 .entry:first-of-type {
@@ -105,19 +108,19 @@
     display: block;
     font-size: 28rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .entry-desc {
     display: block;
     font-size: 24rpx;
-    color: #7a869a;
+    color: #8B86A8;
     margin-top: 4rpx;
 }
 
 .entry-trailing {
     font-size: 26rpx;
-    color: #1d6fd1;
+    color: #7C5CFC;
     margin-left: 16rpx;
     flex-shrink: 0;
 }
@@ -132,8 +135,8 @@
     width: 44rpx;
     height: 44rpx;
     border-radius: 50%;
-    background: #e8f2fd;
-    color: #1d6fd1;
+    background: #EEEAFF;
+    color: #7C5CFC;
     font-size: 24rpx;
     font-weight: 700;
     display: flex;
@@ -147,12 +150,12 @@
     display: block;
     font-size: 28rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
 }
 
 .step-desc {
     display: block;
     font-size: 24rpx;
-    color: #7a869a;
+    color: #8B86A8;
     margin-top: 2rpx;
 }

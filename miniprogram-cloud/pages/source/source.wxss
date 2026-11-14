@@ -2,30 +2,30 @@
     display: block;
     font-size: 30rpx;
     font-weight: 600;
-    color: #14213d;
+    color: #2B2350;
     margin-bottom: 20rpx;
 }
 
 .context {
-    border: 2rpx solid #f0f3f8;
+    border: 2rpx solid #EFEAF8;
     border-radius: 12rpx;
     padding: 20rpx;
     margin-bottom: 16rpx;
 }
 
 .context-selected {
-    border-color: #1d6fd1;
+    border-color: #7C5CFC;
     background: #f5faff;
 }
 
 .context-label {
     font-size: 22rpx;
-    color: #9aa7ba;
+    color: #A9A4C4;
 }
 
 .context-text {
     display: block;
     font-size: 26rpx;
-    color: #1f2d3d;
+    color: #332C55;
     margin-top: 10rpx;
 }
