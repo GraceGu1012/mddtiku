@@ -12,6 +12,9 @@ wx.cloud.init({ env: CLOUD_ENV });
 function rawRequest(method, path, body) {
     return new Promise((resolve, reject) => {
         const header = {};
+        // 服务名必须走 X-WX-SERVICE 请求头（callContainer 官方写法），
+        // 网关靠它路由到具体服务，缺失会报 -601031 INVALID_PATH。
+        header['X-WX-SERVICE'] = SERVICE_NAME;
         if (cookie) {
             header.Cookie = cookie;
         }
