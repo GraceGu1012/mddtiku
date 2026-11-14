@@ -1,0 +1,27 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在定位原文片段…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">返回</button>
+    </view>
+
+    <block wx:else>
+        <text class="heading-title">材料原文</text>
+        <text class="heading-sub">定位到本条学习内容所引用的原文片段。</text>
+
+        <view class="panel">
+            <text class="source-title">{{materialName}}</text>
+            <view class="context {{item.selected ? 'context-selected' : ''}}" wx:for="{{contexts}}" wx:key="index">
+                <text class="pill {{item.selected ? 'pill-blue' : ''}}">{{item.selected ? '引用片段' : '上下文'}}</text>
+                <text class="context-label">{{item.label}}</text>
+                <text class="context-text">{{item.text}}</text>
+            </view>
+            <text class="footer-note">字幕保留原始转写措辞；阅读时结合上下文理解。</text>
+        </view>
+    </block>
+</view>

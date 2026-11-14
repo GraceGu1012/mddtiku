@@ -1,0 +1,79 @@
+{
+  "batch_id": "current-model-20261109-001",
+  "count": 10,
+  "structural_passed": 10,
+  "human_reviewed": 0,
+  "medical_accuracy": "not_independently_verified",
+  "items": [
+    {
+      "id": "C01",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "Q01",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "C02",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "Q02",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "C03",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "Q03",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "C04",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "Q04",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "C05",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    },
+    {
+      "id": "Q05",
+      "structural_pass": true,
+      "errors": [],
+      "semantic_check": "current_model_self_check_only",
+      "human_review": "pending"
+    }
+  ]
+}

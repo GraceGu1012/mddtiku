@@ -1,0 +1,65 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在读取学习档案…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <text class="heading-title">我的</text>
+        <text class="heading-sub">学习档案与复习内容，都在这里。</text>
+
+        <view class="panel account-panel">
+            <view class="account-heading">
+                <view class="profile-avatar">学</view>
+                <view>
+                    <text class="account-name">{{profileLabel}}</text>
+                    <view><text class="pill pill-blue">当前设备档案</text></view>
+                </view>
+            </view>
+            <view class="account-info">
+                <text class="account-info-label">账号信息</text>
+                <text class="account-info-value">设备学习档案</text>
+                <text class="account-info-label">保存状态</text>
+                <text class="account-info-value">学习记录自动保存</text>
+            </view>
+            <text class="footer-note">当前未绑定手机号或正式账号。更换设备或清除缓存后，会建立新的学习档案；已有学习记录仍保留在服务器。</text>
+        </view>
+
+        <view class="profile-stats">
+            <view class="profile-stat">
+                <text class="profile-stat-value">{{attempts}}</text>
+                <text class="profile-stat-label">累计作答</text>
+            </view>
+            <view class="profile-stat">
+                <text class="profile-stat-value">{{correctRate}}</text>
+                <text class="profile-stat-label">作答正确率</text>
+            </view>
+            <view class="profile-stat">
+                <text class="profile-stat-value">{{rememberedCount}}</text>
+                <text class="profile-stat-label">已记住卡片 · 自评</text>
+            </view>
+        </view>
+
+        <view class="panel">
+            <text class="section-title">我的学习</text>
+            <view class="profile-link" wx:for="{{menuItems}}" wx:key="key" data-key="{{item.key}}" bindtap="handleMenuTap">
+                <view class="profile-link-body">
+                    <text class="profile-link-title">{{item.title}}</text>
+                    <text class="profile-link-desc">{{item.desc}}</text>
+                </view>
+                <text class="profile-link-count">{{item.count}}</text>
+                <text class="profile-link-arrow">›</text>
+            </view>
+        </view>
+
+        <view class="panel" wx:if="{{identityNote}}">
+            <text class="muted">{{identityNote}}</text>
+        </view>
+    </block>
+</view>

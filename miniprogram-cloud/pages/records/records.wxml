@@ -1,0 +1,61 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在读取学习记录…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <text class="heading-title">学习记录</text>
+        <text class="heading-sub">每次作答都留下记录，让复习有迹可循。</text>
+
+        <view class="stats">
+            <view class="stat">
+                <text class="stat-label">今日作答</text>
+                <text class="stat-value">{{today}}</text>
+                <text class="stat-hint">按提交次数统计</text>
+            </view>
+            <view class="stat">
+                <text class="stat-label">累计练习</text>
+                <text class="stat-value">{{attempts}}</text>
+                <text class="stat-hint">包含重复练习</text>
+            </view>
+            <view class="stat">
+                <text class="stat-label">作答正确率</text>
+                <text class="stat-value">{{correctRate}}</text>
+                <text class="stat-hint">按累计作答统计</text>
+            </view>
+        </view>
+
+        <view class="panel">
+            <view class="list-head">
+                <text class="section-title">最近练习</text>
+                <text class="muted">最近 20 组</text>
+            </view>
+            <block wx:if="{{sessions.length > 0}}">
+                <view class="history-row" wx:for="{{sessions}}" wx:key="id">
+                    <view class="history-body">
+                        <text class="history-title">{{item.title}}</text>
+                        <text class="history-detail">{{item.detail}}</text>
+                    </view>
+                    <button class="btn history-btn" data-id="{{item.id}}" data-done="{{item.done}}" bindtap="goSession">{{item.actionText}}</button>
+                </view>
+            </block>
+            <view wx:else class="empty-inline">
+                <text class="muted">还没有练习记录，从一组小练习开始吧。</text>
+                <button class="btn btn-primary" bindtap="goPractice">去练习</button>
+            </view>
+        </view>
+
+        <view class="panel" wx:if="{{profileLabel}}">
+            <text class="section-title">{{profileLabel}}</text>
+            <text class="muted">{{identityNote}}</text>
+            <text class="footer-note">卡片自评与答题正确率分别记录。累计记录保留旧版本作答，当前错题本只展示仍在正式库中的同版本题目。</text>
+        </view>
+    </block>
+</view>

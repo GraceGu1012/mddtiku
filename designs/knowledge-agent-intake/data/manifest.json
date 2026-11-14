@@ -1,0 +1,225 @@
+{
+  "run_date": "2026-11-09",
+  "stage": "local_parse_only",
+  "model_calls": 0,
+  "asr_calls": 0,
+  "database_used": false,
+  "materials": [
+    {
+      "id": "transcript",
+      "filename": "天天师兄字幕.csv",
+      "size": 818081,
+      "sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "type": "csv",
+      "record_count": 6680,
+      "course_count": 6,
+      "issues": [],
+      "summary": [
+        {
+          "courseware_id": "2112195317365912484",
+          "rows": 1653,
+          "first": "00:00:40,090",
+          "last": "02:01:00,610",
+          "span_ms": 7220520,
+          "duplicate_nums": [],
+          "sequence_contiguous": true,
+          "overlap_rows": [],
+          "backwards_rows": [],
+          "gaps_over_30s": []
+        },
+        {
+          "courseware_id": "2112885753428808705",
+          "rows": 1156,
+          "first": "00:00:51,980",
+          "last": "01:34:24,460",
+          "span_ms": 5612480,
+          "duplicate_nums": [],
+          "sequence_contiguous": true,
+          "overlap_rows": [],
+          "backwards_rows": [],
+          "gaps_over_30s": []
+        },
+        {
+          "courseware_id": "2112919253191078866",
+          "rows": 1521,
+          "first": "00:00:46,780",
+          "last": "01:57:42,420",
+          "span_ms": 7015640,
+          "duplicate_nums": [],
+          "sequence_contiguous": true,
+          "overlap_rows": [],
+          "backwards_rows": [],
+          "gaps_over_30s": [
+            3970
+          ]
+        },
+        {
+          "courseware_id": "2113969064146764844",
+          "rows": 937,
+          "first": "00:00:31,820",
+          "last": "01:18:37,620",
+          "span_ms": 4685800,
+          "duplicate_nums": [],
+          "sequence_contiguous": true,
+          "overlap_rows": [],
+          "backwards_rows": [],
+          "gaps_over_30s": []
+        },
+        {
+          "courseware_id": "2113994298148434955",
+          "rows": 1010,
+          "first": "00:00:42,490",
+          "last": "01:21:27,240",
+          "span_ms": 4844750,
+          "duplicate_nums": [],
+          "sequence_contiguous": true,
+          "overlap_rows": [],
+          "backwards_rows": [],
+          "gaps_over_30s": []
+        },
+        {
+          "courseware_id": "2114348622411179058",
+          "rows": 403,
+          "first": "00:00:28,820",
+          "last": "00:32:24,220",
+          "span_ms": 1915400,
+          "duplicate_nums": [],
+          "sequence_contiguous": true,
+          "overlap_rows": [],
+          "backwards_rows": [],
+          "gaps_over_30s": []
+        }
+      ]
+    },
+    {
+      "id": "2016",
+      "filename": "【2016】年西综真题 天天师兄冲刺十年真题.pdf",
+      "size": 639138,
+      "sha256": "093d188c16bc0205a593610f8eaf4a35ca43ed695d1992b0b957245b072c9064",
+      "type": "pdf",
+      "pages": 31,
+      "chars": 18734,
+      "empty_pages": [],
+      "replacement_chars": 0,
+      "headings": [
+        {
+          "page": 1,
+          "title": "一、A 型题：1~90 小题，每小题1.5 分；91~120 小题，每小题2 分；共195 分。"
+        },
+        {
+          "page": 23,
+          "title": "二、B 型题：121~150 小题，每小题1.5 分，共45 分。A、B、C、D 是其下两道"
+        },
+        {
+          "page": 26,
+          "title": "三、X 型题：151~180 小题，每小题2 分，共60 分。在每小题给出的A、B、C、"
+        }
+      ],
+      "question_start_count": 180,
+      "missing_question_numbers": [],
+      "duplicate_question_numbers": [],
+      "answer_markers": [],
+      "ignored_numeric_lines": [
+        {
+          "number": 2,
+          "page": 15,
+          "first_line": "9×109/L，Plt 40×109/L。对该患者的适宜治疗方法是"
+        }
+      ],
+      "printed_page_mismatches": [],
+      "sample_pages": [
+        1,
+        23,
+        26,
+        31
+      ]
+    },
+    {
+      "id": "2017",
+      "filename": "【2017】年临综真题 天天师兄冲刺十年真题.pdf",
+      "size": 624960,
+      "sha256": "c7f73e58854e1f73338c3ae6e6fcab07f99623ae6809545b8f2b999d8f3d8a52",
+      "type": "pdf",
+      "pages": 29,
+      "chars": 19044,
+      "empty_pages": [],
+      "replacement_chars": 0,
+      "headings": [
+        {
+          "page": 1,
+          "title": "一、A 型题：1~40 小题，每小题1.5 分；41~115 小题，每小题2 分；共210 分。"
+        },
+        {
+          "page": 22,
+          "title": "二、B 型题：116~135 小题，每小题1.5 分，共30 分。A、B、C、D 是其下两道"
+        },
+        {
+          "page": 24,
+          "title": "三、X 型题：136~165 小题，每小题2 分，共60 分。在每小题给出的A、B、C、"
+        }
+      ],
+      "question_start_count": 165,
+      "missing_question_numbers": [],
+      "duplicate_question_numbers": [],
+      "answer_markers": [],
+      "ignored_numeric_lines": [
+        {
+          "number": 9,
+          "page": 16,
+          "first_line": "5×109/L，中性粒细胞55%，淋巴细胞35%，Plt 110×109/L，网织红细胞15%。骨"
+        }
+      ],
+      "printed_page_mismatches": [],
+      "sample_pages": [
+        1,
+        22,
+        24,
+        29
+      ]
+    },
+    {
+      "id": "2018",
+      "filename": "【2018】年临综真题 天天师兄冲刺十年真题.pdf",
+      "size": 732118,
+      "sha256": "aebb5b0c402bee64be1ca1a2ca6494a14745c6f8fb2ab2ca686cb36c129be7ff",
+      "type": "pdf",
+      "pages": 30,
+      "chars": 17928,
+      "empty_pages": [],
+      "replacement_chars": 0,
+      "headings": [
+        {
+          "page": 1,
+          "title": "一、A 型题：1~40 小题，每小题1.5 分；41~115 小题，每小题2 分；共210 分。"
+        },
+        {
+          "page": 22,
+          "title": "二、B 型题：116~135 小题，每小题1.5 分，共30 分。A、B、C、D 是其下两道"
+        },
+        {
+          "page": 25,
+          "title": "三、X 型题：136~165 小题，每小题2 分，共60 分。在每小题给出的A、B、C、"
+        }
+      ],
+      "question_start_count": 165,
+      "missing_question_numbers": [],
+      "duplicate_question_numbers": [],
+      "answer_markers": [],
+      "ignored_numeric_lines": [
+        {
+          "number": 5,
+          "page": 17,
+          "first_line": "2×109/L，Plt 24×109/L，网织红细胞4.9%，尿蛋白(++)。"
+        }
+      ],
+      "printed_page_mismatches": [],
+      "sample_pages": [
+        1,
+        3,
+        22,
+        25,
+        30
+      ]
+    }
+  ]
+}

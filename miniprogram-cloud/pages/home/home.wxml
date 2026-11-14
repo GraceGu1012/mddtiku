@@ -1,0 +1,98 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在读取已审核的学习内容…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <view class="hero panel">
+            <text class="hero-eyebrow">LEARN · PRACTICE · REMEMBER</text>
+            <text class="hero-title">把学过的知识，变成答得出的答案。</text>
+            <text class="hero-desc">从一组练习开始，回到原文，把不确定的地方弄明白。</text>
+            <button class="btn btn-primary hero-btn" bindtap="goPrimary">{{resume ? '继续上次练习' : '开始今天的练习'}}</button>
+        </view>
+
+        <view class="stats">
+            <view class="stat">
+                <text class="stat-label">今日作答</text>
+                <text class="stat-value">{{today}}</text>
+                <text class="stat-hint">按提交次数统计</text>
+            </view>
+            <view class="stat">
+                <text class="stat-label">累计练习</text>
+                <text class="stat-value">{{attempts}}</text>
+                <text class="stat-hint">包含重复练习</text>
+            </view>
+            <view class="stat">
+                <text class="stat-label">作答正确率</text>
+                <text class="stat-value">{{correctRate}}</text>
+                <text class="stat-hint">按累计作答统计</text>
+            </view>
+            <view class="stat">
+                <text class="stat-label">待巩固错题</text>
+                <text class="stat-value">{{wrongCount}}</text>
+                <text class="stat-hint">最新一次作答仍有误</text>
+            </view>
+        </view>
+
+        <view class="panel">
+            <view class="section-head">
+                <text class="section-title">今天，从这里开始</text>
+                <text class="muted">审核通过后可见</text>
+            </view>
+            <view class="entry" bindtap="goPractice">
+                <view class="entry-body">
+                    <text class="entry-title">课程练习</text>
+                    <text class="entry-desc">{{questionCount}} 道可用题目 · 单选 / 多选 / 判断</text>
+                </view>
+                <text class="entry-trailing">去练习 ›</text>
+            </view>
+            <view class="entry" bindtap="goWrong">
+                <view class="entry-body">
+                    <text class="entry-title">回顾错题</text>
+                    <text class="entry-desc">定位最近答错的知识点，再练一次</text>
+                </view>
+                <text class="entry-trailing">去巩固 ›</text>
+            </view>
+            <view class="entry" bindtap="goCards">
+                <view class="entry-body">
+                    <text class="entry-title">知识卡复习</text>
+                    <text class="entry-desc">{{cardCount}} 张知识卡 · 翻面回忆，查看出处</text>
+                </view>
+                <text class="entry-trailing">去复习 ›</text>
+            </view>
+        </view>
+
+        <view class="panel">
+            <text class="section-title">让每一次练习有依据</text>
+            <view class="step">
+                <text class="step-num">1</text>
+                <view class="step-body">
+                    <text class="step-title">先独立作答</text>
+                    <text class="step-desc">提交后查看答案与解析</text>
+                </view>
+            </view>
+            <view class="step">
+                <text class="step-num">2</text>
+                <view class="step-body">
+                    <text class="step-title">带着疑问回到材料</text>
+                    <text class="step-desc">每条内容都有可点击的原文出处</text>
+                </view>
+            </view>
+            <view class="step">
+                <text class="step-num">3</text>
+                <view class="step-body">
+                    <text class="step-title">把薄弱点再练一次</text>
+                    <text class="step-desc">答对后自动移出待巩固错题</text>
+                </view>
+            </view>
+            <text class="footer-note">2017—2026 真题覆盖仍待核验；当前内容不标记未经证实的"常考"。</text>
+        </view>
+    </block>
+</view>

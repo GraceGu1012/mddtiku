@@ -1,0 +1,41 @@
+.picker-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 0;
+    border-bottom: 1rpx solid #f0f3f8;
+}
+
+.picker-label {
+    font-size: 26rpx;
+    color: #5b6b7f;
+}
+
+.picker-value {
+    font-size: 26rpx;
+    color: #1d6fd1;
+    max-width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.match-note {
+    display: block;
+    font-size: 22rpx;
+    color: #9aa7ba;
+    margin: 20rpx 0;
+}
+
+.list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8rpx 0 16rpx;
+}
+
+.section-title {
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #14213d;
+}

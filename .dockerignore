@@ -1,0 +1,8 @@
+backend/web/tests
+backend/web/design-reference
+backend/web/*.bak*
+backend/web/deploy
+backend/intake/tests
+backend/runtime
+**/__pycache__
+**/.DS_Store

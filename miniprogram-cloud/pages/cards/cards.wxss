@@ -1,0 +1,41 @@
+.search-input {
+    background: #f0f3f8;
+    border-radius: 12rpx;
+    padding: 16rpx 24rpx;
+    font-size: 26rpx;
+    margin-bottom: 16rpx;
+}
+
+.picker-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8rpx 0;
+}
+
+.picker-value {
+    font-size: 26rpx;
+    color: #1d6fd1;
+}
+
+.card-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 16rpx;
+}
+
+.card-action-btn {
+    font-size: 24rpx;
+    color: #1d6fd1;
+    border: 1rpx solid #bad3ef;
+    border-radius: 999rpx;
+    padding: 8rpx 20rpx;
+}
+
+.card-action-rating {
+    font-size: 20rpx;
+    color: #9aa7ba;
+    margin-top: 8rpx;
+}

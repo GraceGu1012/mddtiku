@@ -1,0 +1,95 @@
+.head-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24rpx;
+}
+
+.flashcard {
+    text-align: center;
+    padding: 48rpx 32rpx;
+}
+
+.question-title {
+    display: block;
+    font-size: 36rpx;
+    font-weight: 700;
+    color: #14213d;
+    margin: 24rpx 0;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.card-answer {
+    display: block;
+    font-size: 28rpx;
+    color: #1f2d3d;
+    text-align: left;
+    background: #f7f9fc;
+    border-radius: 12rpx;
+    padding: 24rpx;
+    margin-bottom: 24rpx;
+}
+
+.card-hint {
+    display: block;
+    font-size: 22rpx;
+    color: #9aa7ba;
+    margin-top: 16rpx;
+}
+
+.flip-btn {
+    margin-top: 16rpx;
+}
+
+.rating-row {
+    display: flex;
+    justify-content: center;
+    gap: 16rpx;
+    margin-top: 24rpx;
+}
+
+.explanation {
+    margin-top: 8rpx;
+}
+
+.exp-title {
+    display: block;
+    font-size: 28rpx;
+    font-weight: 700;
+    color: #14213d;
+    margin: 20rpx 0 12rpx;
+}
+
+.exp-quote {
+    background: #f7f9fc;
+    border-left: 6rpx solid #bad3ef;
+    border-radius: 8rpx;
+    padding: 18rpx 20rpx;
+    margin-bottom: 16rpx;
+}
+
+.exp-link {
+    display: block;
+    font-size: 24rpx;
+    color: #1d6fd1;
+    margin-bottom: 8rpx;
+}
+
+.exp-quote-text {
+    display: block;
+    font-size: 26rpx;
+    color: #3d4a5c;
+}
+
+.exp-text {
+    display: block;
+    font-size: 26rpx;
+    color: #3d4a5c;
+    margin-bottom: 8rpx;
+}
+
+.source-note {
+    display: block;
+    text-align: center;
+}

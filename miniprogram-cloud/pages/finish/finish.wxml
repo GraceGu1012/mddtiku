@@ -1,0 +1,45 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在汇总本次练习…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <text class="heading-title">本次练习记录</text>
+        <text class="heading-sub">已保存到学习档案，随时回来继续。</text>
+
+        <view class="panel finish-panel">
+            <text class="finish-eyebrow">PRACTICE REVIEW</text>
+            <text class="finish-title">{{done ? '这一组练习已结束' : '还有题目等你完成'}}</text>
+            <text class="finish-score">{{score}}</text>
+            <text class="muted">当前可查看作答的正确率</text>
+            <text class="finish-line">已作答 {{doneCount}} 题 · 答对 {{correctCount}} 题 · 本组共 {{total}} 题</text>
+            <text wx:if="{{missing > 0}}" class="muted">{{missing}} 题已更新或撤回，历史提交仍计入累计记录。</text>
+            <view class="actions">
+                <button wx:if="{{nextIndex >= 0}}" class="btn btn-primary" bindtap="goContinue">继续作答</button>
+                <button wx:else class="btn btn-primary" bindtap="goPractice">再练一组</button>
+                <button class="btn" bindtap="goWrong">巩固错题</button>
+                <button class="btn" bindtap="goCards">复习知识卡</button>
+            </view>
+        </view>
+
+        <view class="panel">
+            <text class="section-title">逐题回顾</text>
+            <view class="answer-map">
+                <view
+                    wx:for="{{mapItems}}"
+                    wx:key="n"
+                    class="map-cell {{item.cls}}"
+                    data-index="{{item.index}}"
+                    bindtap="goQuestion"
+                >{{item.n}}</view>
+            </view>
+        </view>
+    </block>
+</view>

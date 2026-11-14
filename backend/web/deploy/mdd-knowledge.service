@@ -1,0 +1,20 @@
+[Unit]
+Description=MoDuDu knowledge workbench and learner
+After=network.target postgresql.service
+[Service]
+Type=simple
+User=mddknowledge
+Group=mddknowledge
+WorkingDirectory=/opt/mdd-knowledge/apps/knowledge-agent/web
+EnvironmentFile=/etc/mdd-knowledge/service.env
+ExecStart=/opt/mdd-knowledge/venv/bin/python -B -m uvicorn app:app --host 127.0.0.1 --port 14312 --workers 1 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/mdd-knowledge/apps/knowledge-agent/runtime
+[Install]
+WantedBy=multi-user.target

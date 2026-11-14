@@ -1,0 +1,69 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在读取可练习内容…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <text class="heading-title">开始练习</text>
+        <text class="heading-sub">选一份材料或一个知识点，专注练好一小组。</text>
+
+        <view class="panel">
+            <picker range="{{materialNames}}" value="{{materialIndex}}" bindchange="onMaterialChange">
+                <view class="picker-row">
+                    <text class="picker-label">学习材料</text>
+                    <text class="picker-value">{{materialNames[materialIndex]}} ›</text>
+                </view>
+            </picker>
+            <picker range="{{tagNames}}" value="{{tagIndex}}" bindchange="onTagChange">
+                <view class="picker-row">
+                    <text class="picker-label">知识点</text>
+                    <text class="picker-value">{{tagNames[tagIndex]}} ›</text>
+                </view>
+            </picker>
+            <picker range="{{kindNames}}" value="{{kindIndex}}" bindchange="onKindChange">
+                <view class="picker-row">
+                    <text class="picker-label">题型</text>
+                    <text class="picker-value">{{kindNames[kindIndex]}} ›</text>
+                </view>
+            </picker>
+            <picker range="{{countNames}}" value="{{countIndex}}" bindchange="onCountChange">
+                <view class="picker-row">
+                    <text class="picker-label">每次题量</text>
+                    <text class="picker-value">{{countNames[countIndex]}} ›</text>
+                </view>
+            </picker>
+            <text class="match-note">当前筛选 {{matchedCount}} 题，本次练习 {{practiceCount}} 题。优先安排尚未练习的题目。</text>
+            <button class="btn btn-primary btn-block {{matchedCount === 0 ? 'btn-disabled' : ''}}" loading="{{starting}}" bindtap="handleStart">开始练习</button>
+        </view>
+
+        <view class="list-head">
+            <text class="section-title">可练习的知识点</text>
+            <text class="muted">共 {{matchedCount}} 题</text>
+        </view>
+
+        <block wx:if="{{list.length > 0}}">
+            <view class="item-row" wx:for="{{list}}" wx:key="id">
+                <text class="item-number">{{item.number}}</text>
+                <view class="item-body">
+                    <view>
+                        <text wx:for="{{item.pills}}" wx:for-item="pill" wx:key="index" class="pill {{pill.blue ? 'pill-blue' : ''}}">{{pill.text}}</text>
+                    </view>
+                    <text class="item-title">{{item.prompt}}</text>
+                    <text class="item-foot">{{item.foot}}</text>
+                </view>
+            </view>
+        </block>
+
+        <view wx:else class="state-box">
+            <text class="state-title">暂无可练习题目</text>
+            <text class="state-text">请调整筛选条件，或等待老师审核发布。</text>
+        </view>
+    </block>
+</view>

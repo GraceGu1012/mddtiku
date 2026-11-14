@@ -1,0 +1,158 @@
+.hero {
+    background: linear-gradient(135deg, #eaf3fd 0%, #ffffff 70%);
+}
+
+.hero-eyebrow {
+    display: block;
+    font-size: 20rpx;
+    letter-spacing: 4rpx;
+    color: #1d6fd1;
+    font-weight: 600;
+    margin-bottom: 16rpx;
+}
+
+.hero-title {
+    display: block;
+    font-size: 42rpx;
+    font-weight: 700;
+    color: #14213d;
+    line-height: 1.35;
+    margin-bottom: 16rpx;
+}
+
+.hero-desc {
+    display: block;
+    font-size: 26rpx;
+    color: #5b6b7f;
+    margin-bottom: 28rpx;
+}
+
+.hero-btn {
+    align-self: flex-start;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8rpx 16rpx;
+}
+
+.stat {
+    width: calc(50% - 16rpx);
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 16rpx;
+    padding: 24rpx;
+    margin: 0 8rpx 16rpx;
+    box-shadow: 0 2rpx 8rpx rgba(16, 42, 84, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 22rpx;
+    color: #7a869a;
+}
+
+.stat-value {
+    font-size: 48rpx;
+    font-weight: 700;
+    color: #14213d;
+    margin: 6rpx 0;
+}
+
+.stat-hint {
+    font-size: 20rpx;
+    color: #9aa7ba;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16rpx;
+}
+
+.section-title {
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #14213d;
+    display: block;
+    margin-bottom: 16rpx;
+}
+
+.section-head .section-title {
+    margin-bottom: 0;
+}
+
+.entry {
+    display: flex;
+    align-items: center;
+    padding: 24rpx 0;
+    border-top: 1rpx solid #f0f3f8;
+}
+
+.entry:first-of-type {
+    border-top: none;
+}
+
+.entry-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.entry-title {
+    display: block;
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #14213d;
+}
+
+.entry-desc {
+    display: block;
+    font-size: 24rpx;
+    color: #7a869a;
+    margin-top: 4rpx;
+}
+
+.entry-trailing {
+    font-size: 26rpx;
+    color: #1d6fd1;
+    margin-left: 16rpx;
+    flex-shrink: 0;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20rpx;
+}
+
+.step-num {
+    width: 44rpx;
+    height: 44rpx;
+    border-radius: 50%;
+    background: #e8f2fd;
+    color: #1d6fd1;
+    font-size: 24rpx;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20rpx;
+    flex-shrink: 0;
+}
+
+.step-title {
+    display: block;
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #14213d;
+}
+
+.step-desc {
+    display: block;
+    font-size: 24rpx;
+    color: #7a869a;
+    margin-top: 2rpx;
+}

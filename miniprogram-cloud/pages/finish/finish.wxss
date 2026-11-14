@@ -1,0 +1,85 @@
+.finish-panel {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.finish-eyebrow {
+    font-size: 20rpx;
+    letter-spacing: 4rpx;
+    color: #1d6fd1;
+    font-weight: 600;
+    margin-bottom: 12rpx;
+}
+
+.finish-title {
+    font-size: 36rpx;
+    font-weight: 700;
+    color: #14213d;
+    margin-bottom: 20rpx;
+}
+
+.finish-score {
+    font-size: 88rpx;
+    font-weight: 700;
+    color: #1d6fd1;
+    line-height: 1.2;
+}
+
+.finish-line {
+    display: block;
+    font-size: 26rpx;
+    color: #1f2d3d;
+    margin: 20rpx 0 8rpx;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16rpx;
+    margin-top: 28rpx;
+}
+
+.section-title {
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #14213d;
+    display: block;
+    margin-bottom: 16rpx;
+}
+
+.answer-map {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.map-cell {
+    width: 56rpx;
+    height: 56rpx;
+    border-radius: 12rpx;
+    background: #eef2f7;
+    color: #5b6b7f;
+    font-size: 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 12rpx 12rpx 0;
+}
+
+.map-right {
+    background: #e3f6e9;
+    color: #1c8a45;
+}
+
+.map-wrong {
+    background: #fde8e8;
+    color: #c8332e;
+}
+
+.map-unavailable {
+    background: #f0f3f8;
+    color: #9aa7ba;
+    text-decoration: line-through;
+}

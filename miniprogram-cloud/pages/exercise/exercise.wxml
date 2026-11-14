@@ -1,0 +1,113 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在打开本次练习…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <view class="head-row">
+            <view>
+                <text class="heading-title">专注练习</text>
+                <text class="heading-sub">先独立回忆，再用原文确认。</text>
+            </view>
+            <button class="btn" bindtap="goPractice">稍后继续</button>
+        </view>
+
+        <view class="panel progress-panel">
+            <view class="progress-head">
+                <text class="section-title">本次练习</text>
+                <text class="muted">已作答 {{answered}} / {{total}}</text>
+            </view>
+            <view class="meter"><view class="meter-fill" style="width: {{percent}}%"></view></view>
+            <view class="answer-map">
+                <view
+                    wx:for="{{mapItems}}"
+                    wx:key="n"
+                    class="map-cell {{item.cls}} {{item.current ? 'map-current' : ''}}"
+                    data-index="{{index}}"
+                    bindtap="onMapTap"
+                >{{item.n}}</view>
+            </view>
+            <text class="footer-note">绿色为答对，红色为答错；划线题目已撤回或更新。</text>
+        </view>
+
+        <view wx:if="{{unavailable}}" class="panel">
+            <text class="section-title">这道题已更新或撤回</text>
+            <text class="muted">为避免使用旧答案，本题不再作答。可跳到下一题，或回到练习页开始新一组。</text>
+            <view class="actions">
+                <button wx:if="{{!isLast}}" class="btn btn-primary" bindtap="onNext">下一题</button>
+                <button class="btn" bindtap="goPractice">返回练习</button>
+            </view>
+        </view>
+
+        <view wx:else class="panel">
+            <view class="q-head">
+                <view class="q-pills">
+                    <text wx:for="{{pills}}" wx:key="index" class="pill {{item.blue ? 'pill-blue' : ''}}">{{item.text}}</text>
+                </view>
+                <text class="muted">{{index + 1}} / {{total}}</text>
+            </view>
+            <text class="question-title">{{prompt}}</text>
+            <text class="muted">{{kindTip}}</text>
+
+            <view class="options">
+                <view
+                    wx:for="{{options}}"
+                    wx:key="index"
+                    class="option {{item.cls}}"
+                    data-index="{{item.index}}"
+                    bindtap="onOptionTap"
+                >
+                    <text class="option-letter">{{item.letter}}</text>
+                    <text class="option-text">{{item.text}}</text>
+                </view>
+            </view>
+
+            <view wx:if="{{submitted}}" class="answer-result {{resultCorrect ? '' : 'answer-result-wrong'}}">
+                <text class="answer-result-title">{{resultCorrect ? '回答正确' : '这道题还需要巩固'}}</text>
+                <text class="answer-result-text">正确答案：{{answerText}}</text>
+            </view>
+
+            <view class="actions">
+                <button wx:if="{{!isFirst}}" class="btn" bindtap="onPrev">上一题</button>
+                <button
+                    wx:if="{{!submitted}}"
+                    class="btn btn-primary {{selected.length === 0 ? 'btn-disabled' : ''}}"
+                    loading="{{submitting}}"
+                    bindtap="onSubmit"
+                >提交答案</button>
+                <button wx:elif="{{!isLast}}" class="btn btn-primary" bindtap="onNext">下一题</button>
+                <button wx:else class="btn btn-primary" bindtap="goFinish">查看练习结果</button>
+            </view>
+
+            <view wx:if="{{submitted && explanation}}" class="explanation">
+                <view wx:if="{{explanation.inferred}}" class="notice">AI 推理答案 · 已人工审核。材料引文仅定位题面或知识点，不是官方答案依据。</view>
+            <text class="exp-title">{{explanation.sourceTitle}}</text>
+                <view class="exp-quote" wx:for="{{explanation.evidences}}" wx:key="sourceId">
+                    <text class="exp-link" data-source-id="{{item.sourceId}}" bindtap="goSource">{{item.label}} · 查看上下文 ›</text>
+                    <text class="exp-quote-text">{{item.quote}}</text>
+                </view>
+                <text class="exp-title">{{explanation.inferred ? '推理解析' : '辅助解析'}} <text class="pill">AI 生成</text></text>
+                <text class="exp-text">{{explanation.aiExplanation}}</text>
+                <text class="exp-text exp-option" wx:for="{{explanation.optionExplanations}}" wx:key="letter">{{item.letter}}. {{item.text}}</text>
+                <view class="notice">
+                    <text class="exp-title">大纲与真题覆盖</text>
+                    <text class="exp-text">{{explanation.qualityOutline}} · 2017—2026</text>
+                    <text class="exp-text">{{explanation.qualityCoverage}}</text>
+                </view>
+                <block wx:if="{{explanation.misconceptionTitle}}">
+                    <text class="exp-title">{{explanation.misconceptionTitle}}</text>
+                    <text class="exp-text">{{explanation.misconceptionSummary}}</text>
+                </block>
+            </view>
+
+            <text wx:else class="footer-note">提交后展示答案、解析与材料出处。作答记录自动保存。</text>
+        </view>
+    </block>
+</view>

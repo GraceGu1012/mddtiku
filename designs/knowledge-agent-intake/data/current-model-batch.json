@@ -1,0 +1,643 @@
+{
+  "id": "current-model-20261109-001",
+  "stage": "generated_pending_review",
+  "generated_at": "2026-11-09",
+  "authorization": "用户要求使用当前模型验证并生成卡片和题目",
+  "model": {
+    "selection": "current_conversation",
+    "api_model_id": null,
+    "provider_api_call": false,
+    "usage": null,
+    "cost": null,
+    "usage_note": "当前对话未提供逐批API usage，不可获取；不填0或虚构估算。"
+  },
+  "prompt_version": "current-v1",
+  "prompt_sha256": "9fb2578d8deb77319eca4958ea7788e8b06c6446f5d70e1e8fed2b7bf104400f",
+  "parser_sha256": "dad79d73147f2d02c6605bdb710233269a035d93584d81bd4a800e020e4fc119",
+  "source_material": "天天师兄字幕.csv",
+  "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+  "scope": "独立字幕课时；未关联PDF",
+  "type_policy": "本批暂用单选做最小验证；不是最终题型配置。",
+  "cards": 5,
+  "questions": 5,
+  "human_reviewed": 0,
+  "human_pass_rate": null,
+  "items": [
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "心肌细胞与平台期"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:11:42,580",
+      "source_end": "00:11:53,940",
+      "evidence": [
+        {
+          "source_id": "csv-record-1792",
+          "num": 138,
+          "row_index": 1792,
+          "start": "00:11:42,580",
+          "end": "00:11:47,380",
+          "quote": "我们的窦房结、房室结这些慢反应细胞根本就不存在平台期。"
+        },
+        {
+          "source_id": "csv-record-1793",
+          "num": 139,
+          "row_index": 1793,
+          "start": "00:11:47,900",
+          "end": "00:11:53,940",
+          "quote": "我们的快反应细胞啊，我们的心室肌、心房肌、浦肯野纤维，这些才有平台期。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/138",
+      "semantic_self_check": "字幕138明确列出无平台期的一组，139列出有平台期的一组；未使用上下文中的原题答案字母。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "C01",
+      "kind": "card",
+      "prompt": "根据这段讲解，哪些心肌细胞没有平台期，哪些有平台期？",
+      "answer": "窦房结、房室结这些慢反应细胞没有平台期；心室肌、心房肌、浦肯野纤维这些快反应细胞有平台期。",
+      "ai_explanation": "按原文将两类细胞分开记忆，不把快反应细胞的平台期特征套到房室结。"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "心肌细胞与平台期"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:11:42,580",
+      "source_end": "00:11:53,940",
+      "evidence": [
+        {
+          "source_id": "csv-record-1792",
+          "num": 138,
+          "row_index": 1792,
+          "start": "00:11:42,580",
+          "end": "00:11:47,380",
+          "quote": "我们的窦房结、房室结这些慢反应细胞根本就不存在平台期。"
+        },
+        {
+          "source_id": "csv-record-1793",
+          "num": 139,
+          "row_index": 1793,
+          "start": "00:11:47,900",
+          "end": "00:11:53,940",
+          "quote": "我们的快反应细胞啊，我们的心室肌、心房肌、浦肯野纤维，这些才有平台期。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/138",
+      "semantic_self_check": "字幕138明确列出无平台期的一组，139列出有平台期的一组；未使用上下文中的原题答案字母。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "Q01",
+      "kind": "single_choice",
+      "prompt": "依据这段讲解，下列哪一组依次为“没有平台期的细胞、有平台期的细胞”？",
+      "options": [
+        "窦房结细胞、房室结细胞",
+        "房室结细胞、心室肌细胞",
+        "心室肌细胞、房室结细胞",
+        "心房肌细胞、浦肯野纤维"
+      ],
+      "answer_index": 1,
+      "answer": "B. 房室结细胞、心室肌细胞",
+      "ai_explanation": "原文将房室结列为无平台期的慢反应细胞，将心室肌列为有平台期的快反应细胞。A 两者均在无平台期组；C 次序相反；D 两者均在有平台期组。",
+      "originality": "根据字幕新编练习，不是真题复刻"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "盐酸与胃泌素的负反馈"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:18:04,410",
+      "source_end": "00:18:19,930",
+      "evidence": [
+        {
+          "source_id": "csv-record-1864",
+          "num": 210,
+          "row_index": 1864,
+          "start": "00:18:04,410",
+          "end": "00:18:10,810",
+          "quote": "胃酸刺激，因为我们盐酸它本身对于我们G细胞产生胃泌素是有负反馈作用的。"
+        },
+        {
+          "source_id": "csv-record-1865",
+          "num": 211,
+          "row_index": 1865,
+          "start": "00:18:11,250",
+          "end": "00:18:15,610",
+          "quote": "现在盐酸少了，也就是说它对G细胞的抑制作用就弱了，"
+        },
+        {
+          "source_id": "csv-record-1866",
+          "num": 212,
+          "row_index": 1866,
+          "start": "00:18:15,850",
+          "end": "00:18:19,930",
+          "quote": "所以导致了G细胞就产生了更多的胃泌素，是不是这个道理？"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/210",
+      "semantic_self_check": "210给出负反馈关系；211、212分别给出抑制减弱与胃泌素增多。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "C02",
+      "kind": "card",
+      "prompt": "根据讲解，盐酸减少为什么会使 G 细胞产生更多胃泌素？",
+      "answer": "盐酸对 G 细胞产生胃泌素具有负反馈作用。盐酸减少时，对 G 细胞的抑制减弱，因此产生更多胃泌素。",
+      "ai_explanation": "记忆原文的顺序：盐酸减少 → 抑制作用减弱 → 胃泌素产生增多。"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "盐酸与胃泌素的负反馈"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:18:04,410",
+      "source_end": "00:18:19,930",
+      "evidence": [
+        {
+          "source_id": "csv-record-1864",
+          "num": 210,
+          "row_index": 1864,
+          "start": "00:18:04,410",
+          "end": "00:18:10,810",
+          "quote": "胃酸刺激，因为我们盐酸它本身对于我们G细胞产生胃泌素是有负反馈作用的。"
+        },
+        {
+          "source_id": "csv-record-1865",
+          "num": 211,
+          "row_index": 1865,
+          "start": "00:18:11,250",
+          "end": "00:18:15,610",
+          "quote": "现在盐酸少了，也就是说它对G细胞的抑制作用就弱了，"
+        },
+        {
+          "source_id": "csv-record-1866",
+          "num": 212,
+          "row_index": 1866,
+          "start": "00:18:15,850",
+          "end": "00:18:19,930",
+          "quote": "所以导致了G细胞就产生了更多的胃泌素，是不是这个道理？"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/210",
+      "semantic_self_check": "210给出负反馈关系；211、212分别给出抑制减弱与胃泌素增多。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "Q02",
+      "kind": "single_choice",
+      "prompt": "依据该段讲解，“盐酸减少”之后的变化顺序，哪项正确？",
+      "options": [
+        "对 G 细胞抑制增强 → 胃泌素产生减少",
+        "对 G 细胞抑制增强 → 胃泌素产生增多",
+        "对 G 细胞抑制减弱 → 胃泌素产生增多",
+        "对 G 细胞抑制减弱 → 胃泌素产生减少"
+      ],
+      "answer_index": 2,
+      "answer": "C. 对 G 细胞抑制减弱 → 胃泌素产生增多",
+      "ai_explanation": "字幕211明确说明盐酸减少使抑制减弱，212紧接着说明 G 细胞产生更多胃泌素。其余选项改变了至少一个变化方向。",
+      "originality": "根据字幕新编练习，不是真题复刻"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "球管平衡的位置与作用"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:20:18,100",
+      "source_end": "00:20:35,700",
+      "evidence": [
+        {
+          "source_id": "csv-record-1891",
+          "num": 237,
+          "row_index": 1891,
+          "start": "00:20:18,100",
+          "end": "00:20:22,500",
+          "quote": "看到没有，球管平衡是为了保证尿量和尿钠稳定的。"
+        },
+        {
+          "source_id": "csv-record-1892",
+          "num": 238,
+          "row_index": 1892,
+          "start": "00:20:22,980",
+          "end": "00:20:27,540",
+          "quote": "那么现在球管平衡被破坏了，那么尿量、尿钠就不稳定了。"
+        },
+        {
+          "source_id": "csv-record-1893",
+          "num": 239,
+          "row_index": 1893,
+          "start": "00:20:28,060",
+          "end": "00:20:30,100",
+          "quote": "所以一定要跟球管平衡扯上关系。"
+        },
+        {
+          "source_id": "csv-record-1894",
+          "num": 240,
+          "row_index": 1894,
+          "start": "00:20:30,220",
+          "end": "00:20:31,580",
+          "quote": "那么球管平衡在哪里啊？"
+        },
+        {
+          "source_id": "csv-record-1895",
+          "num": 241,
+          "row_index": 1895,
+          "start": "00:20:31,940",
+          "end": "00:20:34,100",
+          "quote": "近端小管啊，对不对？"
+        },
+        {
+          "source_id": "csv-record-1896",
+          "num": 242,
+          "row_index": 1896,
+          "start": "00:20:34,340",
+          "end": "00:20:35,700",
+          "quote": "近端小管。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/237",
+      "semantic_self_check": "237明确目的；240提出位置问题，241、242连续回答近端小管，需保留问答上下文。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "C03",
+      "kind": "card",
+      "prompt": "讲解将球管平衡定位在哪里？它旨在保证哪两项稳定？",
+      "answer": "近端小管；保证尿量和尿钠稳定。",
+      "ai_explanation": "用“位置—目的”配对记忆：近端小管—尿量、尿钠稳定。"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "球管平衡的位置与作用"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:20:18,100",
+      "source_end": "00:20:35,700",
+      "evidence": [
+        {
+          "source_id": "csv-record-1891",
+          "num": 237,
+          "row_index": 1891,
+          "start": "00:20:18,100",
+          "end": "00:20:22,500",
+          "quote": "看到没有，球管平衡是为了保证尿量和尿钠稳定的。"
+        },
+        {
+          "source_id": "csv-record-1892",
+          "num": 238,
+          "row_index": 1892,
+          "start": "00:20:22,980",
+          "end": "00:20:27,540",
+          "quote": "那么现在球管平衡被破坏了，那么尿量、尿钠就不稳定了。"
+        },
+        {
+          "source_id": "csv-record-1893",
+          "num": 239,
+          "row_index": 1893,
+          "start": "00:20:28,060",
+          "end": "00:20:30,100",
+          "quote": "所以一定要跟球管平衡扯上关系。"
+        },
+        {
+          "source_id": "csv-record-1894",
+          "num": 240,
+          "row_index": 1894,
+          "start": "00:20:30,220",
+          "end": "00:20:31,580",
+          "quote": "那么球管平衡在哪里啊？"
+        },
+        {
+          "source_id": "csv-record-1895",
+          "num": 241,
+          "row_index": 1895,
+          "start": "00:20:31,940",
+          "end": "00:20:34,100",
+          "quote": "近端小管啊，对不对？"
+        },
+        {
+          "source_id": "csv-record-1896",
+          "num": 242,
+          "row_index": 1896,
+          "start": "00:20:34,340",
+          "end": "00:20:35,700",
+          "quote": "近端小管。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/237",
+      "semantic_self_check": "237明确目的；240提出位置问题，241、242连续回答近端小管，需保留问答上下文。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "Q03",
+      "kind": "single_choice",
+      "prompt": "关于球管平衡，下列哪项与这段讲解一致？",
+      "options": [
+        "位于近端小管，保证尿量和尿钠稳定",
+        "位于近端小管，目的是使尿量和尿钠持续增多",
+        "位于近端小管，目的是使尿量和尿钠持续减少",
+        "讲解未说明其位置，也未说明其作用"
+      ],
+      "answer_index": 0,
+      "answer": "A. 位于近端小管，保证尿量和尿钠稳定",
+      "ai_explanation": "原文先说保证尿量和尿钠稳定，再明确回答位置是近端小管。“稳定”不等同于持续增多或持续减少，D 与原文已有说明不符。",
+      "originality": "根据字幕新编练习，不是真题复刻"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "中等",
+      "tags": [
+        "渗透性利尿的讲解链条"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:20:55,510",
+      "source_end": "00:21:26,430",
+      "evidence": [
+        {
+          "source_id": "csv-record-1903",
+          "num": 249,
+          "row_index": 1903,
+          "start": "00:20:55,510",
+          "end": "00:21:04,790",
+          "quote": "渗透性利尿的本质，比如说我们的高渗葡萄糖，我们的甘露醇，它会提高我们小管液的溶质浓度，对不对？"
+        },
+        {
+          "source_id": "csv-record-1904",
+          "num": 250,
+          "row_index": 1904,
+          "start": "00:21:04,910",
+          "end": "00:21:07,350",
+          "quote": "提高的是小管液的溶质浓度。"
+        },
+        {
+          "source_id": "csv-record-1905",
+          "num": 251,
+          "row_index": 1905,
+          "start": "00:21:07,630",
+          "end": "00:21:09,110",
+          "quote": "所以它产生的渗透性利尿。"
+        },
+        {
+          "source_id": "csv-record-1906",
+          "num": 252,
+          "row_index": 1906,
+          "start": "00:21:09,230",
+          "end": "00:21:13,870",
+          "quote": "所以渗透性利尿的问题是在小管，它怎么会是小球滤过增加呢？"
+        },
+        {
+          "source_id": "csv-record-1907",
+          "num": 253,
+          "row_index": 1907,
+          "start": "00:21:13,910",
+          "end": "00:21:15,830",
+          "quote": "它是小管的问题，是不是？"
+        },
+        {
+          "source_id": "csv-record-1908",
+          "num": 254,
+          "row_index": 1908,
+          "start": "00:21:16,070",
+          "end": "00:21:18,350",
+          "quote": "所以肾小球滤过应该是不变的。"
+        },
+        {
+          "source_id": "csv-record-1909",
+          "num": 255,
+          "row_index": 1909,
+          "start": "00:21:18,670",
+          "end": "00:21:26,430",
+          "quote": "在渗透性利尿时，本身的肾小球滤过是不变的，完全是因为近端小管重吸收少了而导致尿量增多。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/249",
+      "semantic_self_check": "249、250给出溶质浓度提高；252排除以小球滤过增加解释；255给出近端小管重吸收减少与尿量增多的关系。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "C04",
+      "kind": "card",
+      "prompt": "这段讲解如何解释渗透性利尿时尿量增多？",
+      "answer": "讲解指出，高渗葡萄糖、甘露醇等会提高小管液的溶质浓度；并将尿量增多归因于近端小管重吸收减少，而非肾小球滤过增加。",
+      "ai_explanation": "仅概括该段讲解：小管液溶质浓度提高 → 近端小管重吸收减少 → 尿量增多。这里不扩展到材料未说明的其他条件。"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "中等",
+      "tags": [
+        "渗透性利尿的讲解链条"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:20:55,510",
+      "source_end": "00:21:26,430",
+      "evidence": [
+        {
+          "source_id": "csv-record-1903",
+          "num": 249,
+          "row_index": 1903,
+          "start": "00:20:55,510",
+          "end": "00:21:04,790",
+          "quote": "渗透性利尿的本质，比如说我们的高渗葡萄糖，我们的甘露醇，它会提高我们小管液的溶质浓度，对不对？"
+        },
+        {
+          "source_id": "csv-record-1904",
+          "num": 250,
+          "row_index": 1904,
+          "start": "00:21:04,910",
+          "end": "00:21:07,350",
+          "quote": "提高的是小管液的溶质浓度。"
+        },
+        {
+          "source_id": "csv-record-1905",
+          "num": 251,
+          "row_index": 1905,
+          "start": "00:21:07,630",
+          "end": "00:21:09,110",
+          "quote": "所以它产生的渗透性利尿。"
+        },
+        {
+          "source_id": "csv-record-1906",
+          "num": 252,
+          "row_index": 1906,
+          "start": "00:21:09,230",
+          "end": "00:21:13,870",
+          "quote": "所以渗透性利尿的问题是在小管，它怎么会是小球滤过增加呢？"
+        },
+        {
+          "source_id": "csv-record-1907",
+          "num": 253,
+          "row_index": 1907,
+          "start": "00:21:13,910",
+          "end": "00:21:15,830",
+          "quote": "它是小管的问题，是不是？"
+        },
+        {
+          "source_id": "csv-record-1908",
+          "num": 254,
+          "row_index": 1908,
+          "start": "00:21:16,070",
+          "end": "00:21:18,350",
+          "quote": "所以肾小球滤过应该是不变的。"
+        },
+        {
+          "source_id": "csv-record-1909",
+          "num": 255,
+          "row_index": 1909,
+          "start": "00:21:18,670",
+          "end": "00:21:26,430",
+          "quote": "在渗透性利尿时，本身的肾小球滤过是不变的，完全是因为近端小管重吸收少了而导致尿量增多。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/249",
+      "semantic_self_check": "249、250给出溶质浓度提高；252排除以小球滤过增加解释；255给出近端小管重吸收减少与尿量增多的关系。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "Q04",
+      "kind": "single_choice",
+      "prompt": "依据该段对渗透性利尿的解释，尿量增多直接归因于哪项？",
+      "options": [
+        "肾小球滤过增加",
+        "近端小管重吸收增加",
+        "小管液溶质浓度降低",
+        "近端小管重吸收减少"
+      ],
+      "answer_index": 3,
+      "answer": "D. 近端小管重吸收减少",
+      "ai_explanation": "字幕255将尿量增多归因于近端小管重吸收减少，并说明该段讨论中肾小球滤过不变。A 与原文相反；B、C 分别颠倒重吸收和溶质浓度的方向。",
+      "originality": "根据字幕新编练习，不是真题复刻"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "出汗、渗透压与 ADH"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:37:58,260",
+      "source_end": "00:38:14,140",
+      "evidence": [
+        {
+          "source_id": "csv-record-2108",
+          "num": 454,
+          "row_index": 2108,
+          "start": "00:37:58,260",
+          "end": "00:38:06,980",
+          "quote": "你大量出汗，那我们排出来的汗液是低渗的，所以我们大量出汗以后会导致血浆晶体渗透压增高，"
+        },
+        {
+          "source_id": "csv-record-2109",
+          "num": 455,
+          "row_index": 2109,
+          "start": "00:38:07,300",
+          "end": "00:38:10,820",
+          "quote": "血浆晶体渗透压增高是刺激ADH分泌最重要的因素。"
+        },
+        {
+          "source_id": "csv-record-2110",
+          "num": 456,
+          "row_index": 2110,
+          "start": "00:38:11,100",
+          "end": "00:38:14,140",
+          "quote": "ADH增多了，那尿量是减少的呀，这肯定不选。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/454",
+      "semantic_self_check": "454给出出汗后的渗透压变化；455说明其刺激 ADH 分泌；456说明 ADH 增多与尿量减少。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "C05",
+      "kind": "card",
+      "prompt": "依据这段讲解，大量出汗后，血浆晶体渗透压、ADH 和尿量如何变化？",
+      "answer": "大量出汗使血浆晶体渗透压增高，刺激 ADH 分泌；ADH 增多后，尿量减少。",
+      "ai_explanation": "按原文连成方向链：血浆晶体渗透压增高 → ADH 分泌增多 → 尿量减少。"
+    },
+    {
+      "status": "pending_review",
+      "difficulty": "基础",
+      "tags": [
+        "出汗、渗透压与 ADH"
+      ],
+      "courseware_id": "2112885753428808705",
+      "material_sha256": "b8d52a7466b13ac34478a697ba80d08555e9f515471cf482f036519b97beff81",
+      "source_start": "00:37:58,260",
+      "source_end": "00:38:14,140",
+      "evidence": [
+        {
+          "source_id": "csv-record-2108",
+          "num": 454,
+          "row_index": 2108,
+          "start": "00:37:58,260",
+          "end": "00:38:06,980",
+          "quote": "你大量出汗，那我们排出来的汗液是低渗的，所以我们大量出汗以后会导致血浆晶体渗透压增高，"
+        },
+        {
+          "source_id": "csv-record-2109",
+          "num": 455,
+          "row_index": 2109,
+          "start": "00:38:07,300",
+          "end": "00:38:10,820",
+          "quote": "血浆晶体渗透压增高是刺激ADH分泌最重要的因素。"
+        },
+        {
+          "source_id": "csv-record-2110",
+          "num": 456,
+          "row_index": 2110,
+          "start": "00:38:11,100",
+          "end": "00:38:14,140",
+          "quote": "ADH增多了，那尿量是减少的呀，这肯定不选。"
+        }
+      ],
+      "source_url": "index.html#csv/2112885753428808705/454",
+      "semantic_self_check": "454给出出汗后的渗透压变化；455说明其刺激 ADH 分泌；456说明 ADH 增多与尿量减少。",
+      "cautions": [
+        "未回听原音视频；尚未人工审核。"
+      ],
+      "model": "当前对话模型（API模型ID不可获取）",
+      "id": "Q05",
+      "kind": "single_choice",
+      "prompt": "依据讲解，大量出汗后的变化组合应为哪项？",
+      "options": [
+        "血浆晶体渗透压降低 → ADH 增多 → 尿量减少",
+        "血浆晶体渗透压增高 → ADH 增多 → 尿量减少",
+        "血浆晶体渗透压增高 → ADH 减少 → 尿量增多",
+        "血浆晶体渗透压增高 → ADH 增多 → 尿量增多"
+      ],
+      "answer_index": 1,
+      "answer": "B. 血浆晶体渗透压增高 → ADH 增多 → 尿量减少",
+      "ai_explanation": "454–456依次支持渗透压增高、ADH 分泌受到刺激，以及 ADH 增多后尿量减少。其余选项改变了至少一个方向。",
+      "originality": "根据字幕新编练习，不是真题复刻"
+    }
+  ]
+}

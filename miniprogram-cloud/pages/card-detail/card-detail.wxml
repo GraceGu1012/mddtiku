@@ -1,0 +1,65 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在打开知识卡…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <view class="head-row">
+            <view>
+                <text class="heading-title">知识卡复习</text>
+                <text class="heading-sub">{{index + 1}} / {{total}} · {{tagLine}}</text>
+            </view>
+            <button class="btn" bindtap="goCards">返回卡片库</button>
+        </view>
+
+        <view class="panel flashcard">
+            <text class="pill pill-blue">{{flipped ? '答案要点' : '回忆问题'}}</text>
+            <text class="question-title">{{prompt}}</text>
+
+            <block wx:if="{{flipped}}">
+                <text class="card-answer">{{answer}}</text>
+                <text class="card-hint">你刚才回忆出来了吗？</text>
+                <view class="actions rating-row">
+                    <button
+                        wx:for="{{ratingList}}"
+                        wx:key="key"
+                        class="btn {{item.primary ? 'btn-primary' : ''}}"
+                        data-key="{{item.key}}"
+                        disabled="{{rating}}"
+                        bindtap="onRate"
+                    >{{item.name}}</button>
+                </view>
+            </block>
+
+            <block wx:else>
+                <button class="btn btn-primary btn-block flip-btn" bindtap="onFlip">翻面查看答案</button>
+                <text class="card-hint">花几秒在心中回答，再查看答案。</text>
+            </block>
+        </view>
+
+        <view wx:if="{{flipped && explanation}}" class="panel explanation">
+            <view wx:if="{{explanation.inferred}}" class="notice">AI 推理答案 · 已人工审核。材料引文仅定位题面或知识点，不是官方答案依据。</view>
+            <text class="exp-title">{{explanation.sourceTitle}}</text>
+            <view class="exp-quote" wx:for="{{explanation.evidences}}" wx:key="sourceId">
+                <text class="exp-link" data-source-id="{{item.sourceId}}" bindtap="goSource">{{item.label}} · 查看上下文 ›</text>
+                <text class="exp-quote-text">{{item.quote}}</text>
+            </view>
+            <text class="exp-title">{{explanation.inferred ? '推理解析' : '辅助解析'}} <text class="pill">AI 生成</text></text>
+            <text class="exp-text">{{explanation.aiExplanation}}</text>
+            <view class="notice">
+                <text class="exp-title">大纲与真题覆盖</text>
+                <text class="exp-text">{{explanation.qualityOutline}} · 2017—2026</text>
+                <text class="exp-text">{{explanation.qualityCoverage}}</text>
+            </view>
+        </view>
+
+        <text wx:if="{{!flipped}}" class="footer-note source-note">来源：{{materialName}} · 每次自评会保存到学习档案。</text>
+    </block>
+</view>
