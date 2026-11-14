@@ -1,0 +1,166 @@
+.board-hero {
+    background: linear-gradient(160deg, #F1ECFF 0%, #FBFAFF 55%, #ffffff 100%);
+    border-radius: 24rpx;
+    padding: 32rpx;
+    margin-bottom: 24rpx;
+}
+
+.board-title {
+    display: block;
+    font-size: 40rpx;
+    font-weight: 700;
+    color: #2B2350;
+}
+
+.board-sub {
+    display: block;
+    font-size: 24rpx;
+    color: #6E6A8F;
+    margin-top: 8rpx;
+}
+
+.period-tabs {
+    display: flex;
+    background: #ffffff;
+    border-radius: 999rpx;
+    padding: 8rpx;
+    margin-bottom: 24rpx;
+    box-shadow: 0 4rpx 16rpx rgba(76, 55, 168, 0.08);
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 14rpx 0;
+    border-radius: 999rpx;
+    font-size: 26rpx;
+    color: #6E6A8F;
+}
+
+.tab-active {
+    background: linear-gradient(135deg, #9B7BFF 0%, #7C5CFC 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.list {
+    padding: 12rpx 28rpx;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 0;
+    border-top: 1rpx solid #EFEAF8;
+}
+
+.row:first-of-type {
+    border-top: none;
+}
+
+.row-me {
+    background: #F8F6FD;
+    margin: 0 -16rpx;
+    padding-left: 16rpx;
+    padding-right: 16rpx;
+    border-radius: 12rpx;
+}
+
+.rank {
+    width: 64rpx;
+    font-size: 30rpx;
+    font-weight: 700;
+    color: #8B86A8;
+    flex-shrink: 0;
+}
+
+.rank-top {
+    color: #F7B500;
+    font-size: 34rpx;
+}
+
+.row-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.row-name {
+    font-size: 28rpx;
+    color: #332C55;
+    font-weight: 500;
+}
+
+.row-xp {
+    font-size: 26rpx;
+    font-weight: 700;
+    color: #FF9F43;
+    flex-shrink: 0;
+}
+
+.me-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.me-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.me-badge {
+    min-width: 68rpx;
+    height: 68rpx;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9B7BFF 0%, #7C5CFC 100%);
+    color: #ffffff;
+    font-size: 24rpx;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18rpx;
+    flex-shrink: 0;
+}
+
+.me-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.me-name {
+    display: block;
+    font-size: 26rpx;
+    color: #2B2350;
+    font-weight: 600;
+}
+
+.me-bar {
+    height: 12rpx;
+    background: #EEEAFF;
+    border-radius: 999rpx;
+    margin-top: 10rpx;
+    overflow: hidden;
+}
+
+.me-bar-fill {
+    height: 100%;
+    border-radius: 999rpx;
+    background: linear-gradient(90deg, #9B7BFF 0%, #7C5CFC 100%);
+}
+
+.me-xp {
+    font-size: 28rpx;
+    font-weight: 700;
+    color: #FF9F43;
+    margin-left: 16rpx;
+    flex-shrink: 0;
+}
+
+.mascot-big {
+    font-size: 88rpx;
+    line-height: 1.2;
+    margin-bottom: 16rpx;
+}

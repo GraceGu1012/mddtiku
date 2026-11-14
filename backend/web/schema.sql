@@ -91,3 +91,21 @@ CREATE TABLE IF NOT EXISTS agent_steps (
  PRIMARY KEY(job_id,name)
 );
 CREATE INDEX IF NOT EXISTS jobs_material_history ON jobs(material_id,created_at DESC,id);
+
+-- Gamification: XP events, AI ask log, and a stable learner identity via WeChat openid.
+ALTER TABLE learners ADD COLUMN IF NOT EXISTS openid text;
+CREATE UNIQUE INDEX IF NOT EXISTS learners_openid ON learners(openid) WHERE openid IS NOT NULL;
+ALTER TABLE learners ADD COLUMN IF NOT EXISTS nickname text NOT NULL DEFAULT '';
+CREATE TABLE IF NOT EXISTS xp_events (
+ id bigserial PRIMARY KEY, learner_id text NOT NULL REFERENCES learners(id),
+ kind text NOT NULL CHECK(kind IN ('answer_correct','card_mastered','streak_bonus')),
+ xp integer NOT NULL CHECK(xp>0 AND xp<=100), item_id text,
+ created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS xp_events_learner ON xp_events(learner_id,created_at DESC);
+CREATE INDEX IF NOT EXISTS xp_events_created ON xp_events(created_at);
+CREATE TABLE IF NOT EXISTS ask_logs (
+ id bigserial PRIMARY KEY, learner_id text NOT NULL REFERENCES learners(id),
+ question text NOT NULL, answer text NOT NULL, created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS ask_logs_learner ON ask_logs(learner_id,created_at DESC);

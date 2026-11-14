@@ -1,0 +1,19 @@
+<view class="guide-page">
+    <swiper class="guide-swiper" bindchange="onChange">
+        <swiper-item wx:for="{{slides}}" wx:key="title">
+            <view class="slide">
+                <view class="mascot-circle">
+                    <text class="mascot-emoji">{{item.emoji}}</text>
+                </view>
+                <text class="slide-title">{{item.title}}</text>
+                <text class="slide-desc">{{item.desc}}</text>
+            </view>
+        </swiper-item>
+    </swiper>
+
+    <view class="guide-dots">
+        <view class="dot {{current === index ? 'dot-active' : ''}}" wx:for="{{slides}}" wx:key="index" wx:for-item="s" wx:for-index="index"></view>
+    </view>
+
+    <button class="btn btn-primary guide-btn" bindtap="finish">{{current === slides.length - 1 ? '开始学习' : '跳过'}}</button>
+</view>

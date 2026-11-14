@@ -1,4 +1,5 @@
 <view class="page">
+    <view wx:if="{{xpPopupShow}}" class="xp-popup">{{xpPopup}}</view>
     <view wx:if="{{state === 'loading'}}" class="state-box">
         <view class="spinner"></view>
         <text class="state-text">正在打开本次练习…</text>

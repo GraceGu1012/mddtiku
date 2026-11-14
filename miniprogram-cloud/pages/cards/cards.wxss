@@ -39,3 +39,16 @@
     color: #A9A4C4;
     margin-top: 8rpx;
 }
+
+.mascot-big {
+    font-size: 88rpx;
+    line-height: 1.2;
+    margin-bottom: 16rpx;
+}
+
+.exit-review {
+    display: inline-block;
+    font-size: 24rpx;
+    color: #7C5CFC;
+    margin-bottom: 16rpx;
+}

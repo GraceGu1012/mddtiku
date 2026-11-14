@@ -11,11 +11,54 @@
     </view>
 
     <block wx:else>
+        <view class="gamify panel" bindtap="goLeaderboard">
+            <view class="gamify-left">
+                <view class="level-badge">Lv{{level}}</view>
+                <view class="gamify-info">
+                    <text class="gamify-name">{{levelName}}</text>
+                    <view class="xp-bar">
+                        <view class="xp-bar-fill" style="width: {{levelProgress}}%"></view>
+                    </view>
+                    <text class="gamify-xp">{{xp}} XP · 距下一级还差 {{((level + 1) * level * 50) - xp}}</text>
+                </view>
+            </view>
+            <view class="gamify-right">
+                <text class="streak">🔥 {{streakDays}} 天</text>
+                <text class="today-xp">今日 +{{todayXp}}</text>
+                <text class="rank-link">排行榜 ›</text>
+            </view>
+        </view>
+
         <view class="hero panel">
             <text class="hero-eyebrow">LEARN · PRACTICE · REMEMBER</text>
             <text class="hero-title">把学过的知识，变成答得出的答案。</text>
             <text class="hero-desc">从一组练习开始，回到原文，把不确定的地方弄明白。</text>
             <button class="btn btn-primary hero-btn" bindtap="goPrimary">{{resume ? '继续上次练习' : '开始今天的练习'}}</button>
+        </view>
+
+        <view class="mastery-row">
+            <view class="mastery panel">
+                <view class="ring-wrap">
+                    <canvas type="2d" id="masteryRing" class="ring-canvas"></canvas>
+                    <view class="ring-hole">
+                        <text class="ring-num">{{masteryPercent}}%</text>
+                        <text class="ring-label">掌握度</text>
+                    </view>
+                </view>
+                <view class="mastery-legend">
+                    <view class="legend-item"><view class="dot dot-done"></view><text>已记住 {{mastered}}</text></view>
+                    <view class="legend-item"><view class="dot dot-learning"></view><text>待巩固 {{learning}}</text></view>
+                    <view class="legend-item"><view class="dot dot-fresh"></view><text>未学 {{cardCount - mastered - learning}}</text></view>
+                </view>
+            </view>
+
+            <view class="review panel" bindtap="goReview">
+                <text class="mascot">🦉</text>
+                <text class="review-title">今日复习</text>
+                <text class="review-num">{{reviewCount}} 张</text>
+                <text class="review-desc">待巩固卡片</text>
+                <view class="btn btn-primary review-btn">{{reviewCount > 0 ? '开始复习' : '去翻卡'}}</view>
+            </view>
         </view>
 
         <view class="stats">
@@ -53,6 +96,13 @@
                 </view>
                 <text class="entry-trailing">去练习 ›</text>
             </view>
+            <view class="entry" bindtap="goStructure">
+                <view class="entry-body">
+                    <text class="entry-title">课程结构</text>
+                    <text class="entry-desc">章节 → 单元，卡片数 · 测验数 · 掌握状态</text>
+                </view>
+                <text class="entry-trailing">查看 ›</text>
+            </view>
             <view class="entry" bindtap="goWrong">
                 <view class="entry-body">
                     <text class="entry-title">回顾错题</text>
@@ -60,12 +110,12 @@
                 </view>
                 <text class="entry-trailing">去巩固 ›</text>
             </view>
-            <view class="entry" bindtap="goCards">
+            <view class="entry" bindtap="goAssistant">
                 <view class="entry-body">
-                    <text class="entry-title">知识卡复习</text>
-                    <text class="entry-desc">{{cardCount}} 张知识卡 · 翻面回忆，查看出处</text>
+                    <text class="entry-title">问一问墨督督</text>
+                    <text class="entry-desc">AI 学习助手，基于课程资料答疑</text>
                 </view>
-                <text class="entry-trailing">去复习 ›</text>
+                <text class="entry-trailing">去提问 ›</text>
             </view>
         </view>
 

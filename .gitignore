@@ -21,3 +21,6 @@ __pycache__/
 *.pyc
 .venv/
 node_modules/
+
+# 本地测试运行时（含测试密钥与测试材料）
+backend/runtime/

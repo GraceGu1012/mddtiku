@@ -13,12 +13,38 @@ Page({
         list: [],
         total: 0,
         rememberedCount: 0,
+        reviewMode: false,
     },
 
     _cards: [],
 
+    onLoad(options) {
+        this.applyReviewMode(options);
+    },
+
     onShow() {
+        // 从首页「今日复习」入口进来时带全局标记
+        const app = getApp();
+        if (app.globalData && app.globalData.reviewMode) {
+            app.globalData.reviewMode = false;
+            this.applyReviewMode({ mode: 'review' });
+        }
         this.load(this.data.state !== 'ready');
+    },
+
+    applyReviewMode(options) {
+        if (options && options.mode === 'review') {
+            if (!this.data.reviewMode) {
+                this.setData({ reviewMode: true });
+                wx.setNavigationBarTitle({ title: '今日复习' });
+            }
+        }
+    },
+
+    exitReview() {
+        this.setData({ reviewMode: false });
+        wx.setNavigationBarTitle({ title: '墨督督学习空间' });
+        this.computeList();
     },
 
     load(showLoading) {
@@ -44,11 +70,16 @@ Page({
     computeList() {
         const keyword = (this.data.keyword || '').trim().toLowerCase();
         const filterIndex = this.data.filterIndex;
+        const reviewMode = this.data.reviewMode;
         const list = this._cards
             .filter((q) => {
                 const haystack = (q.prompt + ' ' + (q.tags || []).join(' ')).toLowerCase();
                 if (keyword && haystack.indexOf(keyword) < 0) {
                     return false;
+                }
+                if (reviewMode) {
+                    // 复习模式：只看待巩固（未记住 / 有点模糊）的卡片
+                    return q.rating === 'again' || q.rating === 'unsure';
                 }
                 if (filterIndex === 1) {
                     return q.rating !== 'remembered';

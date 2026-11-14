@@ -24,6 +24,8 @@ Page({
         isLast: false,
         mapItems: [],
         submitting: false,
+        xpPopup: '',
+        xpPopupShow: false,
     },
 
     _session: null,
@@ -163,11 +165,25 @@ Page({
             .then((result) => {
                 q.result = { correct: result.correct, selected: result.selected, solution: result.solution };
                 this.showQuestion(this.data.index);
+                if (result.correct && result.xp > 0) {
+                    this.showXpPopup(result.xp);
+                }
             })
             .catch((err) => {
                 wx.showToast({ title: err.message, icon: 'none' });
                 this.setData({ submitting: false });
             });
+    },
+
+    // +XP 即时反馈：答对得分时飘字，1.4s 后消失。
+    showXpPopup(xp) {
+        if (this._xpTimer) {
+            clearTimeout(this._xpTimer);
+        }
+        this.setData({ xpPopup: '+' + xp + ' XP', xpPopupShow: true });
+        this._xpTimer = setTimeout(() => {
+            this.setData({ xpPopupShow: false });
+        }, 1400);
     },
 
     onPrev() {

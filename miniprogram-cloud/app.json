@@ -9,7 +9,11 @@
         "pages/finish/finish",
         "pages/card-detail/card-detail",
         "pages/records/records",
-        "pages/source/source"
+        "pages/source/source",
+        "pages/structure/structure",
+        "pages/leaderboard/leaderboard",
+        "pages/assistant/assistant",
+        "pages/guide/guide"
     ],
     "window": {
         "navigationBarTitleText": "墨督督学习空间",

@@ -78,8 +78,12 @@ Page({
             version: this._card.version,
             rating: key,
         })
-            .then(() => {
-                wx.showToast({ title: '已保存：' + common.ratingName(key), icon: 'none' });
+            .then((result) => {
+                const xp = result && result.xp ? result.xp : 0;
+                wx.showToast({
+                    title: '已保存：' + common.ratingName(key) + (xp > 0 ? ' · +' + xp + ' XP' : ''),
+                    icon: 'none',
+                });
                 const next = this._cards[this.data.index + 1];
                 if (next) {
                     wx.redirectTo({ url: '/pages/card-detail/card-detail?id=' + encodeURIComponent(next.id) });

@@ -1,0 +1,54 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在整理课程结构…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <text class="heading-title">课程结构</text>
+        <text class="heading-sub">章节 → 单元，先看全局，再决定从哪里练。</text>
+
+        <view wx:if="{{materials.length === 0}}" class="state-box">
+            <text class="mascot-big">🦉</text>
+            <text class="state-title">还没有已发布的课程内容</text>
+            <text class="state-text">老师审核通过后，这里会显示课程结构。</text>
+        </view>
+
+        <view class="panel material" wx:for="{{materials}}" wx:key="id" wx:for-item="m" wx:for-index="mi">
+            <view class="material-head" data-id="{{m.id}}" bindtap="toggle">
+                <view class="material-info">
+                    <text class="material-name">{{m.name}}</text>
+                    <text class="material-meta">{{m.total}} 条内容 · 已掌握 {{m.done}} 条</text>
+                </view>
+                <view class="material-side">
+                    <text class="material-percent">{{m.percent}}%</text>
+                    <text class="material-arrow">{{expanded[m.id] ? '▾' : '▸'}}</text>
+                </view>
+            </view>
+            <view class="meter"><view class="meter-fill" style="width: {{m.percent}}%"></view></view>
+
+            <view wx:if="{{expanded[m.id]}}" class="units">
+                <view class="unit" wx:for="{{m.units}}" wx:key="label" wx:for-item="u">
+                    <view class="unit-info">
+                        <text class="unit-label">{{u.label}}</text>
+                        <text class="unit-meta">{{u.cards}} 卡 · {{u.questions}} 题</text>
+                    </view>
+                    <view class="unit-state {{u.percent === 100 ? 'state-done' : u.percent > 0 ? 'state-doing' : 'state-new'}}">
+                        {{u.percent === 100 ? '已掌握' : u.percent > 0 ? u.percent + '%' : '未开始'}}
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="panel quick-actions">
+            <button class="btn btn-primary" bindtap="goPractice">去课程练习</button>
+            <button class="btn" bindtap="goCards">翻知识卡</button>
+        </view>
+    </block>
+</view>

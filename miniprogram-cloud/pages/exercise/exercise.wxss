@@ -237,3 +237,39 @@
 .exp-option {
     margin-top: 8rpx;
 }
+
+/* +XP 飘字动效 */
+.xp-popup {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    z-index: 99;
+    padding: 14rpx 36rpx;
+    border-radius: 999rpx;
+    background: linear-gradient(135deg, #FF9F43 0%, #FFC46B 100%);
+    color: #ffffff;
+    font-size: 34rpx;
+    font-weight: 700;
+    box-shadow: 0 10rpx 28rpx rgba(255, 159, 67, 0.45);
+    animation: xpFloat 1.4s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes xpFloat {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 40rpx) scale(0.6);
+    }
+    25% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1.1);
+    }
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -30rpx) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -90rpx) scale(0.9);
+    }
+}

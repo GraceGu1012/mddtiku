@@ -1,0 +1,57 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box">
+        <view class="spinner"></view>
+        <text class="state-text">正在读取排行榜…</text>
+    </view>
+
+    <view wx:elif="{{state === 'error'}}" class="state-box">
+        <text class="state-title">暂时无法打开</text>
+        <text class="state-text">{{errorMsg}}</text>
+        <button class="btn btn-primary" bindtap="handleRetry">重试</button>
+    </view>
+
+    <block wx:else>
+        <view class="board-hero">
+            <text class="board-title">学习排行榜</text>
+            <text class="board-sub">答题 +10 · 卡片掌握 +15 · 连对 3 题 +5</text>
+        </view>
+
+        <view class="period-tabs">
+            <view class="tab {{period === 'week' ? 'tab-active' : ''}}" data-period="week" bindtap="switchPeriod">周榜</view>
+            <view class="tab {{period === 'month' ? 'tab-active' : ''}}" data-period="month" bindtap="switchPeriod">月榜</view>
+        </view>
+
+        <view wx:if="{{entries.length === 0}}" class="state-box">
+            <text class="mascot-big">🏆</text>
+            <text class="state-title">这个周期还没有记录</text>
+            <text class="state-text">完成一次练习，就能上榜。</text>
+        </view>
+
+        <view class="panel list" wx:else>
+            <view class="row {{item.isMe ? 'row-me' : ''}}" wx:for="{{entries}}" wx:key="rank">
+                <view class="rank {{item.rank <= 3 ? 'rank-top' : ''}}">
+                    <text wx:if="{{item.medal}}">{{item.medal}}</text>
+                    <text wx:else>{{item.rank}}</text>
+                </view>
+                <view class="row-body">
+                    <text class="row-name">{{item.nickname}}{{item.isMe ? '（我）' : ''}}</text>
+                </view>
+                <text class="row-xp">{{item.xp}} XP</text>
+            </view>
+        </view>
+
+        <view class="panel me-panel" wx:if="{{me}}">
+            <view class="me-left">
+                <view class="me-badge">Lv{{myLevel}}</view>
+                <view class="me-info">
+                    <text class="me-name">{{me.nickname || '我'}} · {{myLevelName}}</text>
+                    <view class="me-bar">
+                        <view class="me-bar-fill" style="width: {{myProgress}}%"></view>
+                    </view>
+                </view>
+            </view>
+            <text class="me-xp">{{me.xp}} XP</text>
+        </view>
+        <text class="footer-note" wx:else>完成一次答题即可上榜；排行榜使用匿名昵称，不展示个人信息。</text>
+    </block>
+</view>

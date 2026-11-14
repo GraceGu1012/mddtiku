@@ -14,6 +14,29 @@
         <text class="heading-title">我的</text>
         <text class="heading-sub">学习档案与复习内容，都在这里。</text>
 
+        <view class="panel game-panel">
+            <view class="game-top">
+                <view class="game-left">
+                    <view class="game-avatar">🦉</view>
+                    <view class="game-info">
+                        <text class="game-name">{{nickname || profileLabel}}</text>
+                        <text class="game-title">{{levelName}} · Lv{{level}}</text>
+                    </view>
+                </view>
+                <view class="game-right" bindtap="goLeaderboard">
+                    <text class="game-streak">🔥 {{streakDays}} 天</text>
+                    <text class="game-rank">排行榜 ›</text>
+                </view>
+            </view>
+            <view class="game-bar">
+                <view class="game-bar-fill" style="width: {{levelProgress}}%"></view>
+            </view>
+            <view class="game-foot">
+                <text>{{xp}} XP</text>
+                <text>今日 +{{todayXp}}</text>
+            </view>
+        </view>
+
         <view class="panel account-panel">
             <view class="account-heading">
                 <view class="profile-avatar">学</view>

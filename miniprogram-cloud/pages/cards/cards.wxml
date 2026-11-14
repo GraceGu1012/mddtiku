@@ -11,10 +11,11 @@
     </view>
 
     <block wx:else>
-        <text class="heading-title">知识卡</text>
-        <text class="heading-sub">先回忆，再翻面。自评帮助安排复习，不等于测验成绩。</text>
+        <text class="heading-title">{{reviewMode ? '今日复习' : '知识卡'}}</text>
+        <text class="heading-sub">{{reviewMode ? '这些卡片你标记过「未记住 / 有点模糊」，现在再过一遍。' : '先回忆，再翻面。自评帮助安排复习，不等于测验成绩。'}}</text>
+        <view wx:if="{{reviewMode}}" class="exit-review" bindtap="exitReview">查看全部知识卡 ›</view>
 
-        <view class="panel">
+        <view class="panel" wx:if="{{!reviewMode}}">
             <input class="search-input" placeholder="输入问题或知识点" value="{{keyword}}" bindinput="onSearch" />
             <picker range="{{filters}}" value="{{filterIndex}}" bindchange="onFilterChange">
                 <view class="picker-row">
@@ -43,8 +44,9 @@
         </block>
 
         <view wx:else class="state-box">
-            <text class="state-title">当前没有知识卡</text>
-            <text class="state-text">调整筛选条件，或等待老师审核发布。</text>
+            <text class="mascot-big">🦉</text>
+            <text class="state-title">{{reviewMode ? '今天没有待复习的卡片' : '当前没有知识卡'}}</text>
+            <text class="state-text">{{reviewMode ? '去做一组新练习，或翻翻全部知识卡吧。' : '调整筛选条件，或等待老师审核发布。'}}</text>
         </view>
     </block>
 </view>
