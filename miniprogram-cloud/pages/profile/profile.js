@@ -21,6 +21,13 @@ Page({
         todayXp: 0,
         streakDays: 0,
         levelProgress: 0,
+        // 账号资料
+        avatar: '',
+        hasPhone: false,
+        phoneMasked: '',
+        editingName: false,
+        nameInput: '',
+        savingName: false,
     },
 
     onShow() {
@@ -61,6 +68,9 @@ Page({
                     todayXp: g.today_xp || 0,
                     streakDays: g.streak_days || 0,
                     levelProgress: lv.progress,
+                    avatar: g.avatar || '',
+                    hasPhone: !!g.has_phone,
+                    phoneMasked: g.phone_masked || '',
                     menuItems: [
                         {
                             key: 'wrong',
@@ -121,5 +131,101 @@ Page({
 
     goLeaderboard() {
         wx.navigateTo({ url: '/pages/leaderboard/leaderboard' });
+    },
+
+    // ===== 账号资料：手机号绑定 / 用户名修改 / 微信头像 =====
+
+    onGetPhone(event) {
+        // open-type=getPhoneNumber 回调；用户拒绝时 detail 无 code。
+        const code = event.detail && event.detail.code;
+        if (!code) {
+            return;
+        }
+        api('phone', { code: code })
+            .then((result) => {
+                wx.showToast({ title: '已绑定 ' + result.phone_masked, icon: 'none' });
+                this.load(true);
+            })
+            .catch((err) => {
+                wx.showModal({ title: '绑定失败', content: err.message, showCancel: false });
+            });
+    },
+
+    startEditName() {
+        if (!this.data.hasPhone) {
+            wx.showToast({ title: '请先绑定手机号', icon: 'none' });
+            return;
+        }
+        this.setData({ editingName: true, nameInput: this.data.nickname || '' });
+    },
+
+    cancelEditName() {
+        this.setData({ editingName: false, nameInput: '' });
+    },
+
+    onNameInput(event) {
+        this.setData({ nameInput: event.detail.value });
+    },
+
+    saveName() {
+        const name = (this.data.nameInput || '').trim();
+        if (!name || this.data.savingName) {
+            return;
+        }
+        this.setData({ savingName: true });
+        api('profile', { nickname: name })
+            .then((result) => {
+                this.setData({
+                    editingName: false,
+                    nameInput: '',
+                    savingName: false,
+                    nickname: result.nickname,
+                });
+                wx.showToast({ title: '用户名已更新', icon: 'none' });
+            })
+            .catch((err) => {
+                this.setData({ savingName: false });
+                wx.showToast({ title: err.message, icon: 'none' });
+            });
+    },
+
+    // 微信头像：chooseAvatar 返回临时文件，压缩后转 base64 存档（换设备不丢）。
+    onChooseAvatar(event) {
+        const path = event.detail && event.detail.avatarUrl;
+        if (!path) {
+            return;
+        }
+        const upload = (compressed) => {
+            const fs = wx.getFileSystemManager();
+            fs.readFile({
+                filePath: compressed || path,
+                encoding: 'base64',
+                success: (res) => {
+                    const ext = /\.png$/i.test(path) ? 'image/png' : 'image/jpeg';
+                    const dataUrl = 'data:' + ext + ';base64,' + res.data;
+                    if (dataUrl.length > 78000) {
+                        wx.showToast({ title: '头像图片过大，请换一张', icon: 'none' });
+                        return;
+                    }
+                    api('avatar', { avatar: dataUrl })
+                        .then(() => {
+                            this.setData({ avatar: dataUrl });
+                            wx.showToast({ title: '头像已更新', icon: 'none' });
+                        })
+                        .catch((err) => {
+                            wx.showToast({ title: err.message, icon: 'none' });
+                        });
+                },
+                fail: () => {
+                    wx.showToast({ title: '读取头像失败，请重试', icon: 'none' });
+                },
+            });
+        };
+        wx.compressImage({
+            src: path,
+            quality: 50,
+            success: (res) => upload(res.tempFilePath),
+            fail: () => upload(''),
+        });
     },
 });

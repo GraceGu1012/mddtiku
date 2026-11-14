@@ -88,3 +88,40 @@ class GamificationTests(unittest.TestCase):
             for _ in range(19):self.post('learn/ask',{'question':prompt[:80]})
             self.assertEqual(self.post('learn/ask',{'question':prompt[:80]}).status_code,429)
         self.assertEqual(self.post('learn/ask',{'question':'短'}).status_code,422)
+
+    def test_phone_binding_and_profile(self):
+        self.client.get('/api/learn/bootstrap')
+        # 未绑定手机号：不能修改用户名
+        self.assertEqual(self.post('learn/profile',{'nickname':'小明'}).status_code,403)
+        # 绑定手机号（mock 微信开放接口）
+        raw={'errcode':0,'phone_info':{'purePhoneNumber':'13800001234'}}
+        fake=type('Fake',(),{'status_code':200,'json':lambda self:raw})()
+        with patch('learner.httpx.post',return_value=fake):
+            r=self.post('learn/phone',{'code':'mock-code'})
+            self.assertEqual(r.status_code,200)
+            self.assertEqual(r.json()['phone_masked'],'138****1234')
+            # 重复绑定拒绝
+            self.assertEqual(self.post('learn/phone',{'code':'mock-code'}).status_code,409)
+        # 绑定后可改名
+        self.assertEqual(self.post('learn/profile',{'nickname':'小明'}).json()['nickname'],'小明')
+        self.assertEqual(self.client.get('/api/learn/dashboard').json()['gamification']['nickname'],'小明')
+        self.assertTrue(self.client.get('/api/learn/dashboard').json()['gamification']['has_phone'])
+        # 头像保存与校验
+        self.assertEqual(self.post('learn/avatar',{'avatar':'data:image/jpeg;base64,AAAA'}).status_code,200)
+        self.assertTrue(self.client.get('/api/learn/dashboard').json()['gamification']['avatar'].startswith('data:image/'))
+        self.assertEqual(self.post('learn/avatar',{'avatar':'http://x/y.png'}).status_code,422)
+        # 另一个档案绑同一手机号：拒绝，且不能顺走昵称
+        other=TestClient(app.app,base_url='http://127.0.0.1:4312')
+        other.get('/api/learn/bootstrap')
+        other_headers={'X-CSRF-Token':app.CSRF}
+        with patch('learner.httpx.post',return_value=fake):
+            self.assertEqual(other.post('/api/learn/phone',json={'code':'mock-code'},headers=other_headers).status_code,409)
+
+    def test_phone_api_error(self):
+        self.client.get('/api/learn/bootstrap')
+        raw={'errcode':40001}
+        fake=type('Fake',(),{'status_code':200,'json':lambda self:raw})()
+        with patch('learner.httpx.post',return_value=fake):
+            r=self.post('learn/phone',{'code':'bad-code'})
+            self.assertEqual(r.status_code,502)
+            self.assertIn('getuserphonenumber',r.json()['detail'])

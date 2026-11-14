@@ -215,3 +215,87 @@
     color: #8B86A8;
     margin-top: 10rpx;
 }
+
+/* 头像（微信 chooseAvatar）与用户名编辑 */
+.avatar-btn {
+    position: relative;
+    width: 80rpx;
+    height: 80rpx;
+    padding: 0;
+    margin: 0 20rpx 0 0;
+    border-radius: 50%;
+    background: transparent;
+    line-height: 1;
+    flex-shrink: 0;
+    overflow: visible;
+}
+
+.avatar-btn::after {
+    border: none;
+}
+
+.game-avatar-img {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+}
+
+.avatar-edit-hint {
+    position: absolute;
+    right: -6rpx;
+    bottom: -6rpx;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 50%;
+    background: #7C5CFC;
+    color: #ffffff;
+    font-size: 18rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2rpx solid #ffffff;
+}
+
+.name-row {
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
+    min-width: 0;
+}
+
+.name-edit {
+    font-size: 22rpx;
+    color: #7C5CFC;
+    flex-shrink: 0;
+}
+
+.name-save {
+    font-weight: 600;
+}
+
+.name-cancel {
+    color: #A9A4C4;
+}
+
+.name-input {
+    border-bottom: 2rpx solid #DED7FA;
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #2B2350;
+    min-width: 200rpx;
+    max-width: 300rpx;
+    padding: 4rpx 0;
+}
+
+.name-hint {
+    display: block;
+    font-size: 20rpx;
+    color: #A9A4C4;
+    margin-top: 6rpx;
+}
+
+.phone-btn {
+    margin-top: 20rpx;
+    width: 100%;
+    font-size: 26rpx;
+}

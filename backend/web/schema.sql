@@ -96,6 +96,10 @@ CREATE INDEX IF NOT EXISTS jobs_material_history ON jobs(material_id,created_at 
 ALTER TABLE learners ADD COLUMN IF NOT EXISTS openid text;
 CREATE UNIQUE INDEX IF NOT EXISTS learners_openid ON learners(openid) WHERE openid IS NOT NULL;
 ALTER TABLE learners ADD COLUMN IF NOT EXISTS nickname text NOT NULL DEFAULT '';
+-- 账号资料：手机号（绑定后才能改用户名）与头像（压缩后的 data URL）。
+ALTER TABLE learners ADD COLUMN IF NOT EXISTS phone text;
+CREATE UNIQUE INDEX IF NOT EXISTS learners_phone ON learners(phone) WHERE phone IS NOT NULL;
+ALTER TABLE learners ADD COLUMN IF NOT EXISTS avatar text;
 CREATE TABLE IF NOT EXISTS xp_events (
  id bigserial PRIMARY KEY, learner_id text NOT NULL REFERENCES learners(id),
  kind text NOT NULL CHECK(kind IN ('answer_correct','card_mastered','streak_bonus')),

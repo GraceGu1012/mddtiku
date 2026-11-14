@@ -36,6 +36,12 @@ class Rating(Payload):
     rating:str=Field(pattern='^(again|unsure|remembered)$')
 class Ask(Payload):
     question:str=Field(min_length=2,max_length=500)
+class ProfileName(Payload):
+    nickname:str=Field(min_length=1,max_length=20)
+class AvatarData(Payload):
+    avatar:str=Field(min_length=10,max_length=80_000)
+class PhoneCode(Payload):
+    code:str=Field(min_length=4,max_length=64)
 
 def identity(request):
     token=request.cookies.get(COOKIE,'')
@@ -132,10 +138,16 @@ def gamification(learner):
     total=one('SELECT coalesce(sum(xp),0)::int AS xp FROM xp_events WHERE learner_id=%s',(learner,))['xp']
     today=one(f'SELECT coalesce(sum(xp),0)::int AS xp FROM xp_events WHERE learner_id=%s AND {DAILY}',(learner,))['xp']
     info=level_of(total)
-    nickname=one('SELECT nickname FROM learners WHERE id=%s',(learner,))
+    row=one('SELECT nickname,phone,avatar FROM learners WHERE id=%s',(learner,))
     info.update({'xp':total,'today_xp':today,'streak_days':streak_days(learner),
-                 'nickname':nickname['nickname'] if nickname else ''})
+                 'nickname':row['nickname'] if row else '',
+                 'avatar':row['avatar'] if row else '',
+                 'has_phone':bool(row and row['phone']),
+                 'phone_masked':mask_phone(row['phone']) if row and row['phone'] else ''})
     return info
+
+def mask_phone(phone):
+    return phone[:3]+'****'+phone[-4:] if len(phone)>=7 else phone
 
 def mastery(learner):
     cards=[x for x in catalog(learner) if x['kind']=='card']
@@ -416,4 +428,55 @@ def build_router(csrf):
         with transaction() as cur:
             cur.execute('INSERT INTO ask_logs(learner_id,question,answer) VALUES(%s,%s,%s)',(learner,body.question,answer))
         return {'answer':answer,'grounded':True}
+
+    def fetch_phone(code):
+        # 云托管内网调用开放接口：请求发往 api.weixin.qq.com 且不带 access_token，
+        # 由云托管网关自动注入调用凭证（需在云托管控制台开通 getuserphonenumber 权限）。
+        try:
+            response=httpx.post('http://api.weixin.qq.com/wxa/business/getuserphonenumber',
+                                json={'code':code},timeout=15,follow_redirects=False,trust_env=False)
+        except httpx.RequestError:raise HTTPException(502,'手机号验证服务不可用，请稍后再试')
+        data=response.json()
+        err=data.get('errcode')
+        if err not in (0,None):
+            hint='请在云托管控制台开通 getuserphonenumber 接口权限' if err in (40001,41004,48001) else '请稍后再试'
+            raise HTTPException(502,f'手机号绑定失败（错误码{err}）：{hint}')
+        info=data.get('phone_info') or {}
+        pure=info.get('purePhoneNumber') or info.get('phoneNumber','')
+        if not pure:raise HTTPException(502,'未获取到手机号，请重新授权')
+        return pure
+
+    @router.post('/api/learn/phone')
+    def bind_phone(body:PhoneCode,request:Request):
+        learner=require_learner(request)
+        row=one('SELECT phone FROM learners WHERE id=%s',(learner,))
+        if row['phone']:raise HTTPException(409,'该档案已绑定手机号')
+        phone=fetch_phone(body.code)
+        with transaction() as cur:
+            cur.execute('SELECT id FROM learners WHERE phone=%s',(phone,))
+            dup=cur.fetchone()
+            if dup and dup['id']!=learner:raise HTTPException(409,'该手机号已绑定其他学习档案')
+            cur.execute('UPDATE learners SET phone=%s WHERE id=%s',(phone,learner))
+        return {'saved':True,'phone_masked':mask_phone(phone)}
+
+    @router.post('/api/learn/profile')
+    def rename(body:ProfileName,request:Request):
+        learner=require_learner(request)
+        row=one('SELECT phone FROM learners WHERE id=%s',(learner,))
+        if not row or not row['phone']:raise HTTPException(403,'请先绑定手机号，再修改用户名')
+        name=body.nickname.strip()
+        if not name:raise HTTPException(422,'用户名不能为空')
+        with transaction() as cur:
+            cur.execute('UPDATE learners SET nickname=%s WHERE id=%s',(name,learner))
+        return {'saved':True,'nickname':name}
+
+    @router.post('/api/learn/avatar')
+    def save_avatar(body:AvatarData,request:Request):
+        learner=require_learner(request)
+        data=body.avatar
+        if not data.startswith('data:image/') or ';base64,' not in data:
+            raise HTTPException(422,'头像格式无效')
+        with transaction() as cur:
+            cur.execute('UPDATE learners SET avatar=%s WHERE id=%s',(data,learner))
+        return {'saved':True}
     return router
