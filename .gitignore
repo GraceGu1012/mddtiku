@@ -7,6 +7,14 @@ private.*.key
 # 部署产物（云托管改为从本仓库构建，zip 不再需要）
 deploy-*.zip
 
+# 项目内部文档（不入库）
+README.md
+HISTORY.md
+MEMORY.md
+AGENT.md
+HANDOFF.md
+DEPLOY.md
+
 # 系统/临时
 .DS_Store
 __pycache__/
