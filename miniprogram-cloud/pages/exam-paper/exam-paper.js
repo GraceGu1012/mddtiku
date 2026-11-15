@@ -137,6 +137,17 @@ Page({
                 this.decorate(a);
                 this.setData({ attempt: a, busy: false });
                 this.syncQuestionView();
+                // 单选题保存成功后自动进入下一题（多选需手动确认；最后一题停留，便于检查或交卷）
+                if (q.kind === 'single_choice') {
+                    const from = this.data.index;
+                    setTimeout(() => {
+                        if (this.data.view === 'attempt' && !a.submitted_at
+                            && this.data.index === from && from < a.questions.length - 1) {
+                            this.setData({ index: from + 1 });
+                            this.syncQuestionView();
+                        }
+                    }, 400);
+                }
             })
             .catch(err => {
                 this.setData({ busy: false, saveError: '本次选择未保存：' + err.message });

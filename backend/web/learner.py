@@ -1,6 +1,7 @@
 """Local learner workspace. The cookie identifies a browser, not a production account."""
 import hashlib
 import secrets
+import time
 from fastapi import APIRouter, HTTPException, Request, Response
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
@@ -72,6 +73,24 @@ def question(item):
                 options=c.get('options',[]),difficulty=c.get('difficulty','基础'),tags=c.get('tags',[]),
                 material_id=item['material_id'],material_name=item['material_name'])
 
+# 题库目录公共部分缓存：云托管跨公网拉全量 items(约 890KB)是最大性能瓶颈。
+# 每次请求先查轻量指纹(数量+版本和+服务端md5(题集)，仅几十字节传输)，指纹或 TTL 变化才重建。
+_ITEMS_CACHE={'ts':0.0,'key':None,'raw':None,'base':None}
+
+def items_cached(ttl=300):
+    now=time.time()
+    sig=one("""SELECT count(*)::int AS n,coalesce(sum(version),0)::bigint AS v,
+        md5(coalesce(string_agg(id||':'||version,',' ORDER BY id),'')) AS h
+        FROM items WHERE status='approved'""")
+    key=(sig['n'],sig['v'],sig['h'])
+    if _ITEMS_CACHE['raw'] is None or now-_ITEMS_CACHE['ts']>ttl or key!=_ITEMS_CACHE['key']:
+        data=rows(JOIN+" WHERE i.status='approved' ORDER BY i.created_at,i.id")
+        _ITEMS_CACHE['raw']=data
+        _ITEMS_CACHE['base']=[question(x) for x in data]
+        _ITEMS_CACHE['ts']=now
+        _ITEMS_CACHE['key']=key
+    return _ITEMS_CACHE['raw'],_ITEMS_CACHE['base']
+
 def solution(item):
     return {**question(item),'answer':item['current']['answer'],
             'answer_indices':item['current'].get('answer_indices',[]),
@@ -86,14 +105,15 @@ def latest_attempts(learner):
        WHERE s.learner_id=%s ORDER BY a.item_id,a.id DESC""",(learner,))
 
 def catalog(learner):
-    data=rows(JOIN+" WHERE i.status='approved' ORDER BY i.created_at,i.id")
+    _,base=items_cached()
     latest={x['item_id']:x for x in latest_attempts(learner)}
     ratings={x['item_id']:x for x in rows('SELECT * FROM card_progress WHERE learner_id=%s',(learner,))}
     result=[]
-    for item in data:
-        q=question(item);attempt=latest.get(item['id']);rating=ratings.get(item['id'])
-        q['last_correct']=attempt['correct'] if attempt and attempt['item_version']==item['version'] else None
-        q['rating']=rating['rating'] if rating and rating['item_version']==item['version'] else None
+    for item in base:
+        q=dict(item)  # 缓存条目浅拷贝，个性化字段不写回缓存
+        attempt=latest.get(q['id']);rating=ratings.get(q['id'])
+        q['last_correct']=attempt['correct'] if attempt and attempt['item_version']==q['version'] else None
+        q['rating']=rating['rating'] if rating and rating['item_version']==q['version'] else None
         result.append(q)
     return result
 
@@ -211,7 +231,7 @@ def build_router(csrf):
     @router.get('/api/learn/structure')
     def structure_view(request:Request):
         learner=require_learner(request)
-        data=rows(JOIN+" WHERE i.status='approved' ORDER BY i.created_at,i.id")
+        data,_=items_cached()
         latest={x['item_id']:x for x in latest_attempts(learner)}
         ratings={x['item_id']:x for x in rows('SELECT * FROM card_progress WHERE learner_id=%s',(learner,))}
         def state_of(item):
