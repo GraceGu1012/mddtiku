@@ -91,7 +91,12 @@ Page({
             q.kindName = KIND_NAMES[q.kind] || '选择题';
             q.selected = q.selected || [];
             q.selectedLetters = letters(q.selected);
-            q.options = (q.options || []).map((text, i) => ({ letter: String.fromCharCode(65 + i), text, selected: q.selected.indexOf(i) >= 0 }));
+            q.options = (q.options || []).map((opt, i) => {
+                // decorate 会在每次保存答案后重复执行，必须幂等：
+                // 首次进来的 opt 是字符串（后端原始数据），再次进来已是 {letter,text,selected}
+                const text = typeof opt === 'string' ? opt : opt.text;
+                return { letter: String.fromCharCode(65 + i), text: text, selected: q.selected.indexOf(i) >= 0 };
+            });
             q.answerLetters = done && q.solution && q.solution.answer ? q.solution.answer.join('、') : '';
             q.explanationText = done && q.solution ? (q.solution.explanation || q.solution.resolution_note || '暂无解析') : '';
             q.correctText = !done ? '' : q.correct === null ? '答案未解决 · 不计分' : q.correct ? '回答正确' : '回答错误';
@@ -144,8 +149,8 @@ Page({
         this.syncQuestionView();
     },
 
-    previous() { if (this.data.index > 0) { this.setData({ index: this.data.index - 1 }); this.syncQuestionView(); } },
-    next() { if (this.data.index < this.data.attempt.questions.length - 1) { this.setData({ index: this.data.index + 1 }); this.syncQuestionView(); } },
+    previous() { if (this.data.view === 'paper') return this.loadQuestion(this.data.index - 1); if (!this.data.busy && this.data.index > 0) { this.setData({ index: this.data.index - 1 }); this.syncQuestionView(); } },
+    next() { if (this.data.view === 'paper') return this.loadQuestion(this.data.index + 1); if (!this.data.busy && this.data.attempt && this.data.index < this.data.attempt.questions.length - 1) { this.setData({ index: this.data.index + 1 }); this.syncQuestionView(); } },
 
     submitAttempt() {
         const a = this.data.attempt;
