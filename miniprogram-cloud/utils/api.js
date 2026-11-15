@@ -69,6 +69,19 @@ function rawRequest(method, path, body) {
     });
 }
 
+// 网关偶发抖动（102002/超时/poll 失败，多见于云托管版本切换瞬间）自动重试 2 次，
+// 递增退避 0.6s/1.2s；仅对通道层失败（statusCode=0）重试，业务错误(4xx/5xx)直接抛出。
+function rawRequestWithRetry(method, path, body) {
+    const attempt = (n) => rawRequest(method, path, body).catch((err) => {
+        if (err && err.statusCode === 0 && n < 2) {
+            return new Promise((resolve) => setTimeout(resolve, 600 * (n + 1)))
+                .then(() => attempt(n + 1));
+        }
+        throw err;
+    });
+    return attempt(0);
+}
+
 function ensureBoot(force) {
     if (boot && !force) {
         return Promise.resolve(boot);
@@ -76,7 +89,7 @@ function ensureBoot(force) {
     if (bootPromise && !force) {
         return bootPromise;
     }
-    bootPromise = rawRequest('GET', '/api/learn/bootstrap')
+    bootPromise = rawRequestWithRetry('GET', '/api/learn/bootstrap')
         .then((data) => {
             boot = data;
             bootPromise = null;
@@ -92,7 +105,7 @@ function ensureBoot(force) {
 function api(path, body) {
     const method = body === undefined ? 'GET' : 'POST';
     return ensureBoot()
-        .then(() => rawRequest(method, '/api/learn/' + path, body))
+        .then(() => rawRequestWithRetry(method, '/api/learn/' + path, body))
         .catch((err) => {
             if (err && err.statusCode === 401) {
                 boot = null;
