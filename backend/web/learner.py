@@ -150,12 +150,20 @@ def mask_phone(phone):
     return phone[:3]+'****'+phone[-4:] if len(phone)>=7 else phone
 
 def mastery(learner):
-    cards=[x for x in catalog(learner) if x['kind']=='card']
-    mastered=sum(1 for x in cards if x['rating']=='remembered')
-    learning=sum(1 for x in cards if x['rating'] in ('again','unsure'))
-    fresh=len(cards)-mastered-learning
-    percent=round(mastered*100/len(cards)) if cards else 0
-    return {'total':len(cards),'mastered':mastered,'learning':learning,'fresh':fresh,
+    # SQL 聚合代替全量 catalog：云托管跨公网访问数据库，逐行传 890KB 项内容要 10s+，
+    # 这里只需计数（语义与原实现一致：版本不匹配的评分视为未学）
+    row=one("""SELECT count(*) FILTER (WHERE i.kind='card') AS total,
+                      count(*) FILTER (WHERE i.kind='card' AND cp.rating='remembered'
+                                        AND cp.item_version=i.version) AS mastered,
+                      count(*) FILTER (WHERE i.kind='card' AND cp.rating IN ('again','unsure')
+                                        AND cp.item_version=i.version) AS learning
+               FROM items i
+               LEFT JOIN card_progress cp ON cp.item_id=i.id AND cp.learner_id=%s
+               WHERE i.status='approved'""",(learner,))
+    total=row['total'];mastered=row['mastered'];learning=row['learning']
+    fresh=total-mastered-learning
+    percent=round(mastered*100/total) if total else 0
+    return {'total':total,'mastered':mastered,'learning':learning,'fresh':fresh,
             'percent':percent,'review_count':learning}
 
 def build_router(csrf):

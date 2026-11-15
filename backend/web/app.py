@@ -44,6 +44,9 @@ async def lifespan(app):
     if thread:thread.join(timeout=2)
 
 app=FastAPI(lifespan=lifespan,docs_url=None,redoc_url=None)
+# 大响应（题库目录 800KB+ JSON）gzip 压缩：小程序端经微信通道下载明显提速
+from fastapi.middleware.gzip import GZipMiddleware
+app.add_middleware(GZipMiddleware, minimum_size=2048)
 # 云托管模式：流量经微信内部通道进入，Host 是云托管网关域名，不再限定本机；
 # 仍保留 CSRF / Origin / 长度校验，且仅开放学习端使用（工作台上传等大文件接口不对外承诺）。
 CLOUD=os.getenv('KNOWLEDGE_CLOUD')=='1'
