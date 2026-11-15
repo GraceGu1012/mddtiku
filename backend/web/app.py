@@ -417,3 +417,6 @@ def usage():
 
 from learner import build_router
 app.include_router(build_router(CSRF))
+
+from exam_learning import build_router as exam_learning_router
+app.include_router(exam_learning_router())

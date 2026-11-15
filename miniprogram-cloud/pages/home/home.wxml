@@ -89,6 +89,13 @@
                 <text class="section-title">今天，从这里开始</text>
                 <text class="muted">审核通过后可见</text>
             </view>
+            <view class="entry" bindtap="goExamPapers">
+                <view class="entry-body">
+                    <text class="entry-title">十年真题</text>
+                    <text class="entry-desc">年度套卷 · 查看原题与讲解整理进度</text>
+                </view>
+                <text class="entry-trailing">查看 ›</text>
+            </view>
             <view class="entry" bindtap="goPractice">
                 <view class="entry-body">
                     <text class="entry-title">课程练习</text>

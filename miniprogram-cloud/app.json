@@ -1,6 +1,8 @@
 {
     "pages": [
         "pages/home/home",
+    "pages/exam-papers/exam-papers",
+    "pages/exam-paper/exam-paper",
         "pages/wrong/wrong",
         "pages/cards/cards",
         "pages/profile/profile",

@@ -123,6 +123,10 @@ Page({
         }
     },
 
+    goExamPapers() {
+        wx.navigateTo({ url: '/pages/exam-papers/exam-papers' });
+    },
+
     goPractice() {
         wx.navigateTo({ url: '/pages/practice/practice' });
     },

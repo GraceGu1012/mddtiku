@@ -1,0 +1,37 @@
+<view class="page">
+    <view wx:if="{{state === 'loading'}}" class="state-box"><view class="spinner"></view><text>正在读取套卷…</text></view>
+    <view wx:elif="{{state === 'error'}}" class="state-box"><text class="state-title">暂时无法读取</text><text class="state-text">{{errorMsg}}</text><button class="btn btn-primary" bindtap="load">重试</button></view>
+    <block wx:else>
+        <text class="heading-title">{{paper.year}} 年真题</text><text class="heading-sub">{{paper.title}}</text>
+        <view class="notice">真题与讲解整理 · 待审核。尚未开放整卷作答，候选答案、知识点和知识卡不计入正式学习记录。</view>
+        <view class="panel counts"><text>{{paper.question_count}} 道原题</text><text>{{paper.answered_count}} 道候选答案</text><text>{{paper.unresolved_count}} 道答案未解决</text><text>{{paper.card_count}} 张候选知识卡</text></view>
+        <view wx:if="{{!canPreview}}" class="panel"><text class="item-title">正在进行教研核对</text><text class="paragraph">题目、候选答案与课堂讲解仍待审核。当前可查看整理进度，内容开放后再开始学习。</text><button class="btn" bindtap="load">刷新进度</button></view>
+        <block wx:else>
+            <view wx:if="{{!total}}" class="panel">这份套卷暂无题目。</view>
+            <block wx:else>
+                <view class="question-nav"><button class="btn" disabled="{{index === 0}}" bindtap="previous">上一题</button><picker range="{{paper.question_numbers}}" value="{{index}}" bindchange="selectQuestion"><view class="question-picker">第 {{paper.question_numbers[index]}} 题 · {{index + 1}} / {{total}} ▾</view></picker><button class="btn" disabled="{{index === total - 1}}" bindtap="next">下一题</button></view>
+                <view wx:if="{{questionState === 'loading'}}" class="state-box"><view class="spinner"></view><text>正在读取题目…</text></view>
+                <view wx:elif="{{questionState === 'error'}}" class="state-box"><text class="state-text">{{questionError}}</text><button class="btn" bindtap="retryQuestion">重试本题</button></view>
+                <block wx:else>
+                    <view class="panel">
+                        <text class="pill">{{question.kind === 'multiple_choice' ? '多选题' : '单选题'}} · 教研预览</text>
+                        <text class="muted">{{question.section}}</text>
+                        <view wx:if="{{question.shared_stem}}" class="shared"><text class="item-title">共用题干</text><text class="paragraph" selectable>{{question.shared_stem}}</text></view>
+                        <text class="prompt" selectable>{{question.prompt}}</text>
+                        <view wx:for="{{question.figures}}" wx:key="path" class="notice">本题含原题附图（PDF 第 {{item.page}} 页），请在教研工作台对照原图核对。</view>
+                        <view wx:for="{{options}}" wx:key="letter" class="option"><text>{{item.letter}}.</text><text selectable>{{item.text}}</text></view>
+                        <text class="muted">原卷页码：{{question.source_pages}}</text>
+                    </view>
+                    <button class="btn btn-block" bindtap="toggleNotes">{{showNotes ? '收起讲解整理' : '查看候选解析与知识卡'}}</button>
+                    <block wx:if="{{showNotes}}">
+                        <view class="panel notes"><text class="item-title">{{answerText}}</text><text class="paragraph" selectable>{{question.explanation || question.resolution_note || '暂无可确认的解析。'}}</text><text class="muted">整理解析与课堂原文分开展示，需结合原题人工核对。</text></view>
+                        <view wx:if="{{question.evidence.length}}" class="panel"><text class="item-title">课堂原文 · 逐字引文</text><view wx:for="{{question.evidence}}" wx:key="index" class="evidence"><text class="muted">{{item.source_path}} · {{item.start}}—{{item.end}}</text><text class="paragraph" selectable>{{item.quote}}</text></view></view>
+                        <view wx:if="{{question.knowledge_points.length}}" class="panel"><text class="item-title">本题关联知识点 · 待审核</text><view wx:for="{{question.knowledge_points}}" wx:key="id" class="paragraph">{{item.title}}</view></view>
+                        <view wx:if="{{question.cards.length}}" class="panel"><text class="item-title">本题知识卡 · 待审核</text><view wx:for="{{question.cards}}" wx:key="id" class="evidence"><text class="item-title">{{item.front}}</text><text class="paragraph" selectable>{{item.back}}</text><view wx:for="{{item.evidence}}" wx:for-item="source" wx:key="index"><text class="muted">{{source.source_path}} · {{source.start}}—{{source.end}}</text><text class="paragraph" selectable>{{source.quote}}</text></view></view></view>
+                        <view wx:if="{{question.lecture_candidates.length}}" class="panel"><text class="item-title">检索候选 · 不是答案依据</text><text class="paragraph">相似片段可能涉及邻题，检索命中不代表答案已确认。</text><view wx:for="{{question.lecture_candidates}}" wx:key="index" class="evidence"><text class="muted">{{item.source_path}} · {{item.start}}—{{item.end}}</text><text class="paragraph" selectable>{{item.quote}}</text></view></view>
+                    </block>
+                </block>
+            </block>
+        </block>
+    </block>
+</view>

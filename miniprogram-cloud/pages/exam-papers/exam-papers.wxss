@@ -1,0 +1,6 @@
+.section-head { margin-bottom: 24rpx; color: #655d82; font-size: 24rpx; }
+.paper-head { display: flex; justify-content: space-between; align-items: center; gap: 16rpx; }
+.year { font-size: 52rpx; font-weight: 700; color: #7c5cfc; }
+.paper .item-title { margin: 16rpx 0; overflow-wrap: break-word; }
+.counts { display: flex; flex-wrap: wrap; gap: 12rpx 24rpx; color: #655d82; font-size: 24rpx; }
+.open-link { display: block; color: #6343db; margin-top: 24rpx; font-weight: 600; }
