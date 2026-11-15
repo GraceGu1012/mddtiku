@@ -5,6 +5,8 @@ delete process.env.NODE_OPTIONS
 // ci 会 fork 子进程执行上传：注入 force-ipv4 补丁（本机 IPv6 不在微信白名单，-10008）
 // 注意：还需用 env -i 白名单环境运行本脚本，绕开沙箱 HTTP(S)_PROXY（代理出口也是 IPv6）
 process.env.NODE_OPTIONS = '--require ' + import.meta.dirname + '/force-ipv4.cjs'
+// 主进程自身也要打补丁（上传请求是主进程发出的，NODE_OPTIONS 只覆盖子进程）
+await import('./force-ipv4.cjs')
 
 async function main() {
   const { default: ci } = await import('miniprogram-ci')
