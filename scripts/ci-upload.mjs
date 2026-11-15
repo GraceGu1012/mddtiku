@@ -2,6 +2,9 @@
 // 用法: node scripts/ci-upload.mjs <版本号> [备注]
 // 注意：首行剥离 NODE_OPTIONS，规避会话 shim 导致的 fork spawn ENOENT。
 delete process.env.NODE_OPTIONS
+// ci 会 fork 子进程执行上传：注入 force-ipv4 补丁（本机 IPv6 不在微信白名单，-10008）
+// 注意：还需用 env -i 白名单环境运行本脚本，绕开沙箱 HTTP(S)_PROXY（代理出口也是 IPv6）
+process.env.NODE_OPTIONS = '--require ' + import.meta.dirname + '/force-ipv4.cjs'
 
 async function main() {
   const { default: ci } = await import('miniprogram-ci')
