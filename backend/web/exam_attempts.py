@@ -4,7 +4,7 @@ import secrets
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse
 from pydantic import Field, StrictInt
-from bootstrap import storage_dir
+from bootstrap import storage_dir, APP
 from db import transaction, rows, Json
 from learner import Payload, require_learner
 
@@ -132,6 +132,9 @@ def build_router():
         ref = figures[index];info = s['snapshot']['source_files'].get(ref['path'])
         if not info or info['suffix'] != '.png' or info['sha256'] != ref['sha256']:raise HTTPException(404, '附图不存在')
         file = storage_dir() / 'exam-sources' / (info['sha256'] + '.png')
+        if not file.is_file():
+            # 回退：镜像内打包的附图资产（云托管容器 storage 为空，图随代码库分发）
+            file = APP / 'web' / 'exam_assets' / 'exam-sources' / (info['sha256'] + '.png')
         if not file.is_file():raise HTTPException(404, '附图副本不存在')
         if hashlib.sha256(file.read_bytes()).hexdigest() != info['sha256']:raise HTTPException(409, '附图校验失败')
         return FileResponse(file, media_type='image/png', headers={'Cache-Control':'private, no-store'})
