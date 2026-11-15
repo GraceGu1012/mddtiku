@@ -1,4 +1,4 @@
-"""Read-only annual paper directory; draft questions remain restricted to staff."""
+"""Annual directory and staff preview; approved full-paper attempts use their own routes."""
 from fastapi import APIRouter, HTTPException, Request
 from db import one, rows
 
@@ -20,6 +20,7 @@ def summaries(pid=None):
 
 
 def build_router():
+    from exam_attempts import build_router as attempts_router
     router = APIRouter(prefix='/api/learn/exam-papers')
 
     @router.get('')
@@ -39,8 +40,18 @@ def build_router():
     @router.get('/{pid}/questions/{number}')
     def question(pid: str, number: int, request: Request):
         if not can_preview(request):raise HTTPException(403, '真题尚未开放学习，草稿仅供教研核对')
-        item = one('SELECT payload FROM exam_questions WHERE paper_id=%s AND number=%s', (pid, number))
+        item = one('SELECT payload,review_status FROM exam_questions WHERE paper_id=%s AND number=%s', (pid, number))
         if not item:raise HTTPException(404, '题目不存在')
-        return item['payload']
+        from exam_review import reviewed_payload
+        return reviewed_payload(item['payload'], item['review_status'])
 
-    return router
+    # Attempts include their own /api/learn prefix.
+    combined = APIRouter()
+    combined.include_router(router)
+    combined.include_router(attempts_router())
+    @combined.get('/static/exam-practice.js')
+    def script():
+        from fastapi.responses import FileResponse
+        from bootstrap import APP
+        return FileResponse(APP/'web/static/exam-practice.js', media_type='application/javascript')
+    return combined

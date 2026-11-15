@@ -10,3 +10,23 @@
 .question-picker { font-size: 22rpx; padding: 16rpx 0; text-align: center; color: #6343db; }
 .notes { margin-top: 24rpx; }
 .evidence { border-top: 1rpx solid #e7e2f3; padding-top: 20rpx; margin-top: 20rpx; }
+
+/* ---------- 整卷作答视图 ---------- */
+.attempt-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16rpx; }
+.attempt-titles { min-width: 0; flex: 1; }
+.exit-link { font-size: 24rpx; color: #7C5CFC; flex-shrink: 0; padding-top: 8rpx; }
+.practice-entry .btn { margin-top: 20rpx; }
+.result-panel { display: flex; flex-direction: column; gap: 8rpx; }
+.result-title { font-size: 34rpx; font-weight: 700; color: #7C5CFC; }
+.between { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12rpx; }
+.option-selected { background: #EDE7FF; border: 1rpx solid #7C5CFC; color: #4c2fd6; font-weight: 600; }
+.option-letter { font-weight: 700; flex-shrink: 0; }
+.save-error { display: block; color: #d64545; font-size: 24rpx; padding: 12rpx 4rpx; }
+.history-row { display: flex; align-items: center; justify-content: space-between; gap: 12rpx; border-top: 1rpx solid #e7e2f3; padding: 18rpx 0 0; margin-top: 18rpx; }
+.history-row .muted { flex-shrink: 0; }
+.history-done { color: #7C5CFC; font-weight: 600; }
+.history-ongoing { color: #FF9F43; font-weight: 600; }
+.answer-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12rpx; margin-top: 16rpx; }
+.grid-cell { text-align: center; padding: 14rpx 0; border-radius: 10rpx; background: #f5f3fb; font-size: 24rpx; }
+.cell-done { background: #7C5CFC; color: #ffffff; }
+.cell-current { outline: 3rpx solid #FF9F43; }

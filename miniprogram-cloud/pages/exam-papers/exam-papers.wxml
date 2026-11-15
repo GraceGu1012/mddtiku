@@ -4,14 +4,14 @@
     <view wx:if="{{state === 'loading'}}" class="state-box"><view class="spinner"></view><text>正在读取年度套卷…</text></view>
     <view wx:elif="{{state === 'error'}}" class="state-box"><text class="state-title">暂时无法读取</text><text class="state-text">{{errorMsg}}</text><button class="btn btn-primary" bindtap="load">重试</button></view>
     <block wx:else>
-        <view class="notice">讲解整理待审核，尚未开放整卷作答。候选答案不代表已确认答案，不计入练习、错题和积分。</view>
+        <view class="notice">已审核通过的年度可整卷作答：选项自动保存，交卷后查看答案与解析。答案未解决的题目不计分。</view>
         <view class="section-head"><text>{{papers.length}} 套年度真题 · {{total}} 道原题</text></view>
         <view wx:if="{{!papers.length}}" class="state-box"><text class="state-title">暂无年度真题</text><text class="state-text">当前机构还没有导入真题套卷。</text></view>
         <view wx:for="{{papers}}" wx:key="id" class="panel paper" data-id="{{item.id}}" bindtap="openPaper">
-            <view class="paper-head"><text class="year">{{item.year}}</text><text class="pill">待审核 · 未开放</text></view>
+            <view class="paper-head"><text class="year">{{item.year}}</text><text class="{{item.review_status === 'approved' ? 'pill-approved' : 'pill'}}">{{item.review_status === 'approved' ? '可作答' : '教研核对中'}}</text></view>
             <text class="item-title">{{item.title}}</text>
             <view class="counts"><text>{{item.question_count}} 道原题</text><text>{{item.answered_count}} 道候选答案</text><text>{{item.unresolved_count}} 道未解决</text><text>{{item.card_count}} 张候选知识卡</text></view>
-            <text class="open-link">{{canPreview ? '教研预览' : '查看整理进度'}} ›</text>
+            <text class="open-link">{{item.review_status === 'approved' ? '开始作答' : canPreview ? '教研预览' : '查看整理进度'}} ›</text>
         </view>
     </block>
 </view>

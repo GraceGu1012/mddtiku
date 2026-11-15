@@ -4,3 +4,5 @@
 .paper .item-title { margin: 16rpx 0; overflow-wrap: break-word; }
 .counts { display: flex; flex-wrap: wrap; gap: 12rpx 24rpx; color: #655d82; font-size: 24rpx; }
 .open-link { display: block; color: #6343db; margin-top: 24rpx; font-weight: 600; }
+
+.pill-approved { font-size: 22rpx; padding: 4rpx 16rpx; border-radius: 999rpx; background: #EDE7FF; color: #7C5CFC; font-weight: 600; }

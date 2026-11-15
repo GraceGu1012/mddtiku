@@ -18,7 +18,7 @@ class AppTests(unittest.TestCase):
         with transaction() as cur:
             cur.execute('SELECT current_database() AS db')
             assert cur.fetchone()['db']=='knowledge_agent_test'
-            cur.execute('TRUNCATE learners,model_credentials,model_profiles,audit,items,calls,jobs,batches,materials,prompt_versions,settings RESTART IDENTITY CASCADE')
+            cur.execute('TRUNCATE learners,model_credentials,model_profiles,audit,items,calls,jobs,batches,materials,prompt_versions,settings,exam_papers,exam_questions,exam_paper_revisions,exam_review_events,exam_paper_sessions RESTART IDENTITY CASCADE')
         initialize()
         self.client=TestClient(app.app,base_url='http://127.0.0.1:4312')
         self.headers={'X-CSRF-Token':app.CSRF}

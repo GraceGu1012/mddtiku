@@ -7,6 +7,9 @@ ROOT = APP.parents[1]
 REPORT = ROOT / 'designs/knowledge-agent-intake'
 STORAGE = Path(os.getenv('KNOWLEDGE_STORAGE_DIR', str(APP / 'runtime/materials')))
 
+def storage_dir():
+    return STORAGE
+
 def initialize():
     STORAGE.mkdir(parents=True, exist_ok=True)
     manifest = json.loads((REPORT/'data/manifest.json').read_text())
@@ -14,6 +17,7 @@ def initialize():
     prompt = (APP/'web/generation_prompt.md').read_text()
     with transaction() as cur:
         cur.execute((APP/'web/schema.sql').read_text())
+        cur.execute((APP/'web/exam_schema.sql').read_text())
         for stage in ['analysis','knowledge']:
             content=(APP/'web'/f'{stage}_prompt.md').read_text()
             cur.execute('SELECT id FROM agent_prompt_versions WHERE stage=%s LIMIT 1',(stage,))
